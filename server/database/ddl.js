@@ -1,5 +1,5 @@
 import db from "./connection.js";
-
+import bcrypt from "bcrypt"
 const isDeleteMode = true;
 
 if (isDeleteMode) {
@@ -41,7 +41,7 @@ if (isDeleteMode) {
   db.execute("INSERT INTO roles(role_name) VALUES('user')");
   db.execute("INSERT INTO roles(role_name) VALUES('admin')");
   db.execute(
-    "INSERT INTO users(first_name, last_name, mail, password, role_id) VALUES('SvampeBob', 'firkant', 'mail@mail.dk', '123',1)"
+    `INSERT INTO users(first_name, last_name, mail, password, role_id) VALUES('SvampeBob', 'firkant', 'mail@mail.dk', '${await bcrypt.hash("123", 12)}',1)`
   );
 }
 

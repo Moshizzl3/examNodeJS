@@ -15,7 +15,7 @@
     FooterLinkGroup,
   } from "flowbite-svelte";
 </script>
-<div class="container w-full flex items-center main-container bg-teal-50">
+<div class="container w-full flex items-center justify-center main-container bg-teal-50">
   <div class="container">
     <div class="container latest-content h-full flex justify-center">
       <Card padding="sm" class="w-2/3">
@@ -99,7 +99,7 @@
   </div>
 </div>
 
-<div class="mt-2">
+<div class="mt-2 w-full">
   <Footer class="bg-teal-50">
     <FooterCopyright href="/" by="Flowbite™" year={2022} />
     <FooterLinkGroup
