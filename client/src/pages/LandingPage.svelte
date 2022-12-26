@@ -1,4 +1,5 @@
 <script>
+  import Footer from "../components/Footer.svelte";
   import {
     Card,
     ToolbarButton,
@@ -9,12 +10,9 @@
     Input,
     Label,
     Checkbox,
-    Footer,
-    FooterCopyright,
-    FooterLink,
-    FooterLinkGroup,
   } from "flowbite-svelte";
 </script>
+
 <div class="container w-full flex items-center justify-center main-container bg-teal-50">
   <div class="container">
     <div class="container latest-content h-full flex justify-center">
@@ -99,19 +97,7 @@
   </div>
 </div>
 
-<div class="mt-2 w-full">
-  <Footer class="bg-teal-50">
-    <FooterCopyright href="/" by="Flowbite™" year={2022} />
-    <FooterLinkGroup
-      ulClass="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0"
-    >
-      <FooterLink href="/">About</FooterLink>
-      <FooterLink href="/">Privacy Policy</FooterLink>
-      <FooterLink href="/">Licensing</FooterLink>
-      <FooterLink href="/">Contact</FooterLink>
-    </FooterLinkGroup>
-  </Footer>
-</div>
+<Footer/>
 
 <style>
   .main-container {
