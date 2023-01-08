@@ -13,10 +13,10 @@
   } from "flowbite-svelte";
 </script>
 
-<div class="container w-full flex items-center justify-center main-container bg-teal-50">
-  <div class="container">
+<div class="container w-full md:flex items-center justify-center main-container bg-teal-50">
+  <div class="container w-[100%] p-2">
     <div class="container latest-content h-full flex justify-center">
-      <Card padding="sm" class="w-2/3">
+      <Card padding="sm" class="w-3/4">
         <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
           Latest login
         </h5>
@@ -57,7 +57,7 @@
       </Card>
     </div>
   </div>
-  <div class="container login-content">
+  <div class="container login-content p-2">
     <Card>
       <form class="flex flex-col space-y-6" action="/">
         <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">
