@@ -5,7 +5,7 @@
   let hCard = false;
 </script>
 
-<div class="w-3/4 border main-container container bg-white p-2">
+<div class="w-full border main-container container p-2">
     <div class="user-container">
         <AvatarDetailed/>
     </div>
