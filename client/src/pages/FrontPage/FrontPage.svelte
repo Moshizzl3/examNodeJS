@@ -1,5 +1,7 @@
 <script>
-  import Footer from "../components/Footer.svelte";
+  import Footer from "../../components/Footer.svelte";
+  import { BASE_URL } from "../../store/global";
+  import toastr from "toastr";
   import {
     Card,
     ToolbarButton,
@@ -11,9 +13,36 @@
     Label,
     Checkbox,
   } from "flowbite-svelte";
+
+  let mail = "";
+  let password = "";
+  let messageToUser = "";
+
+  async function login() {
+    const user = { mail: mail, password: password };
+
+    const response = await fetch(`${$BASE_URL}/api/login`, {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(user),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      document.cookie = `token=${data.token}`;
+      window.location.replace("/home");
+      mail = "";
+      password = "";
+      messageToUser = "";
+    } else {
+      toastr.options.timeOut = 3000;
+      toastr.error("Wrong email or password, please try again");
+    }
+  }
 </script>
 
-<div class="container w-full md:flex items-center justify-center main-container bg-teal-50">
+<div
+  class="container w-screen md:flex items-center justify-center main-container"
+>
   <div class="container w-[100%] p-2">
     <div class="container latest-content h-full flex justify-center">
       <Card padding="sm" class="w-3/4">
@@ -70,11 +99,18 @@
             name="email"
             placeholder="name@company.com"
             required
+            bind:value={mail}
           />
         </Label>
         <Label class="space-y-2">
           <span>Your password</span>
-          <Input type="password" name="password" placeholder="•••••" required />
+          <Input
+            type="password"
+            name="password"
+            placeholder="•••••"
+            required
+            bind:value={password}
+          />
         </Label>
         <div class="flex items-start">
           <Checkbox>Remember me</Checkbox>
@@ -84,7 +120,7 @@
             >Lost password?</a
           >
         </div>
-        <Button type="submit" class="w-full">Login to your account</Button>
+        <Button on:click={login} class="w-full">Login to your account</Button>
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
           Not registered? <a
             href="/"
@@ -97,7 +133,7 @@
   </div>
 </div>
 
-<Footer/>
+<Footer />
 
 <style>
   .main-container {

@@ -9,7 +9,7 @@
     A,
     Button,
   } from "flowbite-svelte";
-  import Footer from "../components/Footer.svelte";
+  import Footer from "../../components/Footer.svelte";
 
   const user = {
     firstName: "",

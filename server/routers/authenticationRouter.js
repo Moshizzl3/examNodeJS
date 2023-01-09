@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 const router = Router();
 
 
-router.post("/login", async (req, res) => {
+router.post("/api/login", async (req, res) => {
     const [user, _] = await db.execute("SELECT * FROM users WHERE mail=?", [
       req.body.mail,
     ]);
