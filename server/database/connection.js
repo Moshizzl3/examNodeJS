@@ -5,7 +5,7 @@ dotenv.config({path:'../.env'})
 
 
 const connection = await mysql.createConnection({
-    host: "127.0.0.1",
+    host: process.env.DB_HOST,
     user: "Mo",
     password: "mopass",
     database: "examNode",

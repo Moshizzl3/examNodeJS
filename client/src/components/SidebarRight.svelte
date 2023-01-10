@@ -34,7 +34,7 @@
     <Input id="search-navbar" class="pl-10" placeholder="Search..." />
   </div>
   <div class="mt-2">
-    <p>Feed</p>
+    <p class="dark:bg-white">Feed</p>
   </div>
   <div class="container flex flex-col items-start">
     <Timeline />

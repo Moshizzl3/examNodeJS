@@ -7,7 +7,7 @@ const router = Router();
 router.use(passport.initialize())
 
 router.get(
-  "/protected",
+  "/posts",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     res.status(200).send({
@@ -19,6 +19,8 @@ router.get(
       },
     });
   }
+
+  //query to db to get all posts on user
 );
 
 export default router;

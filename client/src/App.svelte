@@ -11,6 +11,7 @@
   import ExplorePage from "./pages/ExplorePage/ExplorePage.svelte";
   import InboxPage from "./pages/InboxPage/InboxPage.svelte";
   import SettingsPage from "./pages/SettingsPage/SettingsPage.svelte";
+  import PageNotFound from "./pages/PageNotFound/PageNotFound.svelte";
 
 </script>
 
@@ -27,6 +28,7 @@
     <PrivateRoute path="/inbox"><InboxPage /></PrivateRoute>
     <PrivateRoute path="/friends"><FriendsPage /></PrivateRoute>
     <PrivateRoute path="/settings"><SettingsPage /></PrivateRoute>
+    <Route component={PageNotFound}></Route>
   </Router>
   <DarkMode />
 </main>

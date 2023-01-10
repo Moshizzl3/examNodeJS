@@ -20,4 +20,5 @@
     <Post />
     <Post />
   </div>
+  
 </div>

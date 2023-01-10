@@ -6,6 +6,7 @@
     SidebarItem,
     SidebarWrapper,
   } from "flowbite-svelte";
+  import { Link } from "svelte-navigator";
 
 
   function logout() {
@@ -38,7 +39,7 @@
               >
             </svelte:fragment>
           </SidebarItem>
-          <SidebarItem label="Explore">
+          <SidebarItem label="Explore" href="/explore">
             <svelte:fragment slot="icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,6 +63,7 @@
                   y2="21"
                 /></svg
               >
+    
             </svelte:fragment>
           </SidebarItem>
           <SidebarItem label="Inbox">
