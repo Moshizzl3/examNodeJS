@@ -13,7 +13,7 @@
 <div
   class="container w-1/3  p-2 sidebar-container md:flex max-h-full flex-col items-start justify-center"
 >
-  <div class="hidden relative md:block m-2">
+  <div class="hidden relative md:block m-2 max-h-full">
     <div
       class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none"
     >
@@ -36,7 +36,7 @@
   <div class="mt-2">
     <p class="dark:bg-white">Feed</p>
   </div>
-  <div class="container flex flex-col items-start">
+  <div class="container flex flex-col p-5 items-start overflow-y-auto">
     <Timeline />
   </div>
 </div>

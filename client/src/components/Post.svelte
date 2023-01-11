@@ -25,13 +25,18 @@
           console.log("HTTP-Error: " + response.status)
       }
   }
+
+
+
+  
+
   onMount(load_pic)
   }
 </script>
 
 <div class="w-full border main-container container p-2">
   <div class="user-container">
-    <AvatarDetailed postDate={post.created_on}, userName={post.first_name}/>
+    <AvatarDetailed userImage={post.profile_image_url} postDate={post.created_on}, userName={post.first_name}/>
   </div>
   <div class="mt-2 flex justify-center w-full">
     <Card img={imageObjectURL} horizontal reverse={hCard} class="w-full h-full">      

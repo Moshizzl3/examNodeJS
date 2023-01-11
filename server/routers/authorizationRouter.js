@@ -28,7 +28,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const [posts, _] = await db.execute(
-      "SELECT a.id,a.text,a.created_on,a.user_id,a.image_url, b.first_name FROM posts a INNER JOIN users b ON a.user_id=b.id WHERE user_id = ? ORDER BY created_on DESC",
+      "SELECT a.id,a.text,a.created_on,a.user_id,a.image_url, b.first_name, b.profile_image_url FROM posts a INNER JOIN users b ON a.user_id=b.id WHERE user_id = ? ORDER BY created_on DESC",
       [req.user.id]
     );
     res.status(200).send({
@@ -40,18 +40,22 @@ router.get(
   //query to db to get all posts on user
 );
 
-router.get(
-  "/posts/image/:imageUrl",
-  function (req, res) {
-    res.sendFile(path.resolve(`./public/images/${req.params.imageUrl}`));
-  }
-);
+router.get("/posts/image/:imageUrl", function (req, res) {
+  res.sendFile(path.resolve(`./public/images/${req.params.imageUrl}`));
+});
 
 router.get(
   "/users/image",
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
     res.sendFile(path.resolve(`./public/images/${req.user.profile_image_url}`));
+  }
+);
+router.get(
+  "/users/images/:name",
+  passport.authenticate("jwt", { session: false }),
+  function (req, res) {
+    res.sendFile(path.resolve(`./public/images/${req.params.name}`));
   }
 );
 
@@ -81,5 +85,13 @@ router.post("/upload_image", upload.array("files"), (req, res) => {
     res.status(400);
   }
 });
+
+router.get(
+  "/api/user",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.status(200).send({ data: req.user.first_name});
+  }
+);
 
 export default router;

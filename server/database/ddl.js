@@ -76,7 +76,7 @@ if (isDeleteMode) {
 
   db.execute(
     `INSERT INTO users(first_name, last_name, mail, password, profile_image_url) VALUES(?,?,?,?,?)`,
-    ["Patrick", "mogensen", "mail1@mail.dk", await bcrypt.hash("1234", 12), "mo.jpeg"]
+    ["Patrick", "mogensen", "mail1@mail.dk", await bcrypt.hash("1234", 12), "bla.jpg"]
   );
 
   // Create some posts

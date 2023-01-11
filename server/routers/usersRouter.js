@@ -6,6 +6,9 @@ import bcrypt from "bcrypt";
 const router = Router();
 
 
+
+
+
 router.post("/api/users", async (req, res) => {
   const user = { ...req.body };
   const saltRounds = 12;

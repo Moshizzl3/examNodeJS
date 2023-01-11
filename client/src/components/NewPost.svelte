@@ -14,6 +14,7 @@
   import AvatarDetailed from "./AvatarDetailed.svelte";
   import { BASE_URL, cookie } from "../store/global.js";
   import { createEventDispatcher } from "svelte";
+  import AvatarSimple from "./AvatarSimple.svelte";
 
   let formModal = false;
   let postText;
@@ -22,7 +23,7 @@
 
   const dispatcher = createEventDispatcher();
 
-  async function postPost() {
+  async function newPost() {
     let post = { text: postText };
     let imageUrl;
     if (imageFiles) {
@@ -60,12 +61,12 @@
 </script>
 
 <div class="w-full border container bg-green p-2">
+  <div class="user-container">
+    <AvatarSimple/>
+  </div>
   {#if imageFiles}
   <Img size="max-w-md"  alignment="mx-auto" src={URL.createObjectURL(imageFiles[0])} alt="sample 1"/>
   {/if}
-  <div class="user-container">
-    <AvatarDetailed userName="Mohamad" postDate="" />
-  </div>
   <div class="mt-2 flex justify-center">
     <form class="w-full">
       <label for="editor" class="sr-only">Publish post</label>
@@ -113,7 +114,7 @@
               ></ToolbarButton
             >
           </ToolbarGroup>
-          <ToolbarButton name="send" slot="end" on:click={postPost}
+          <ToolbarButton name="send" slot="end" on:click={newPost}
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
