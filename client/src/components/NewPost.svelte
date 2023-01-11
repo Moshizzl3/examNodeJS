@@ -1,53 +1,86 @@
 <script>
-  import{Textarea, Toolbar, ToolbarButton, ToolbarGroup} from "flowbite-svelte"
+  import {
+    Textarea,
+    Toolbar,
+    ToolbarButton,
+    ToolbarGroup,
+    Button,
+    Modal,
+    Label,
+    Input,
+    Fileupload,
+    Img
+  } from "flowbite-svelte";
   import AvatarDetailed from "./AvatarDetailed.svelte";
+  import { BASE_URL, cookie } from "../store/global.js";
+  import { createEventDispatcher } from "svelte";
+
+  let formModal = false;
+  let postText;
+  let imageFiles;
+  let imageName;
+
+  const dispatcher = createEventDispatcher();
+
+  async function postPost() {
+    let post = { text: postText };
+    let imageUrl;
+    if (imageFiles) {
+      const formData = new FormData();
+      formData.append("files", imageFiles[0]);
+      const response = await fetch(`${$BASE_URL}/upload_image`, {
+        headers: {
+          Authorization: $cookie,
+        },
+        method: "POST",
+        body: formData,
+      });
+      if (response.ok) {
+        const data = await response.json();
+        imageUrl = data.data;
+      }
+      post.imageUrl = imageUrl
+      postText=""
+      imageFiles=""
+      imageName=""
+    }
+
+    const response = await fetch(`${$BASE_URL}/posts`, {
+      headers: {
+        Authorization: $cookie,
+        "Content-type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(post),
+    });
+    if (response.ok) {
+      dispatcher("message", { text: "ok" });
+    }
+  }
 </script>
 
 <div class="w-full border container bg-green p-2">
+  {#if imageFiles}
+  <Img size="max-w-md"  alignment="mx-auto" src={URL.createObjectURL(imageFiles[0])} alt="sample 1"/>
+  {/if}
   <div class="user-container">
-    <AvatarDetailed />
+    <AvatarDetailed userName="Mohamad" postDate="" />
   </div>
   <div class="mt-2 flex justify-center">
     <form class="w-full">
       <label for="editor" class="sr-only">Publish post</label>
-      <Textarea id="editor" rows="3" class="test" placeholder="Write a comment">
+      <Textarea
+        id="editor"
+        rows="3"
+        class="test"
+        placeholder="Write a comment"
+        bind:value={postText}
+      >
         <Toolbar slot="header" embedded>
           <ToolbarGroup>
-            <ToolbarButton name="Attach file"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13"
-                /></svg
-              ></ToolbarButton
-            >
-            <ToolbarButton name="Embed map"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-                /><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-                /></svg
-              ></ToolbarButton
-            >
-            <ToolbarButton name="Upload image"
+            <ToolbarButton
+              name="Upload image"
+              on:click={() => (formModal = true)}
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -64,21 +97,6 @@
             >
           </ToolbarGroup>
           <ToolbarGroup>
-            <ToolbarButton name="Format code"
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-6 h-6"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
-                /></svg
-              ></ToolbarButton
-            >
             <ToolbarButton name="Add emoji"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +113,7 @@
               ></ToolbarButton
             >
           </ToolbarGroup>
-          <ToolbarButton name="send" slot="end"
+          <ToolbarButton name="send" slot="end" on:click={postPost}
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -113,6 +131,27 @@
         </Toolbar>
       </Textarea>
     </form>
-
   </div>
+
+  <Modal bind:open={formModal} size="xs" autoclose={false}>
+    <form class="flex flex-col space-y-6" action="#">
+      <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">
+        Upload image
+      </h3>
+      <div>
+        <Label class="space-y-2 mb-2">
+          <span>Upload file</span>
+          <Fileupload
+            bind:files={imageFiles}
+            bind:value={imageName}
+            name="files"
+          />
+        </Label>
+        <Label>File: {imageName}</Label>
+      </div>
+      <Button on:click={() => (formModal = false)} class="w-full1"
+        >confirm</Button
+      >
+    </form>
+  </Modal>
 </div>

@@ -9,6 +9,5 @@ const getCookie = (key) => {
   }, "");
 };
 
-console.log(getCookie("token"))
 
 export const cookie = readable(getCookie("token"));

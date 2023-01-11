@@ -26,10 +26,11 @@ router.post("/api/login", async (req, res) => {
   
     const payload = {
       id: user[0].id,
-      name: user[0].first_name + " " + user[0].last_name,
       mail: user[0].mail,
     }
-  
+
+    console.log("payload",payload)
+
     const token = jwt.sign(payload, "secret", { expiresIn: "1d" });
   
     res.status(200).send({
