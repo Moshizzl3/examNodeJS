@@ -39,7 +39,7 @@
 </script>
 
 <div class="flex items-center space-x-4">
-  <Avatar src={imageObjectURL} rounded />
+  <Avatar src={imageObjectURL} rounded class="object-cover"/>
   <div class="space-y-1 font-medium dark:text-white w-full flex space-x-4 flex">
     <div
       class="flex justify-start w-full text-sm text-gray-500 dark:text-gray-400"

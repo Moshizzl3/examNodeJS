@@ -2,6 +2,7 @@ import express from "express";
 import userRouter from "./routers/usersRouter.js";
 import authencationRouter from "./routers/authenticationRouter.js";
 import authorizationRouter from "./routers/authorizationRouter.js";
+import followersRouter from "./routers/followersRouter.js";
 import cors from "cors";
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.static("public"));
 app.use(userRouter);
 app.use(authencationRouter);
 app.use(authorizationRouter);
+app.use(followersRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("app is now running on port:", PORT));

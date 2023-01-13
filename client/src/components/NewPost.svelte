@@ -23,6 +23,7 @@
 
   const dispatcher = createEventDispatcher();
 
+  //new post, first we uploade image if one is present, then we get new url back, that we use to retrive picture again
   async function newPost() {
     let post = { text: postText };
     let imageUrl;

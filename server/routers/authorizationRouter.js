@@ -20,7 +20,6 @@ const upload = multer({
 });
 
 const router = Router();
-
 router.use(passport.initialize());
 
 router.get(
@@ -45,10 +44,18 @@ router.get("/posts/image/:imageUrl", function (req, res) {
 });
 
 router.get(
-  "/users/image",
+  "/users/profile-image",
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
     res.sendFile(path.resolve(`./public/images/${req.user.profile_image_url}`));
+  }
+);
+
+router.get(
+  "/users/cover-image",
+  passport.authenticate("jwt", { session: false }),
+  function (req, res) {
+    res.sendFile(path.resolve(`./public/images/${req.user.cover_image_url}`));
   }
 );
 router.get(
@@ -56,6 +63,54 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
     res.sendFile(path.resolve(`./public/images/${req.params.name}`));
+  }
+);
+
+router.post(
+  "/posts/search",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const blacklistedWords = ["and", "then", "or"];
+    const whiteListedChars = /[^A-Za-z0-9-|]/g;
+    let searchParameters = req.body.searchParameters.split(" ");
+    searchParameters = searchParameters
+      .filter((word) => !blacklistedWords.includes(word))
+      .map((word) => word + "|")
+      .toString()
+      .replace(whiteListedChars, "")
+      .slice(0, -1);
+
+    const [result, _] = await db.execute(
+      "SELECT a.id,a.text,a.created_on,a.user_id,a.image_url, b.first_name, b.profile_image_url FROM posts a INNER JOIN users b ON a.user_id=b.id WHERE text REGEXP ? ORDER BY created_on DESC",
+      [searchParameters]
+    );
+    console.log(searchParameters);
+    console.log(result);
+    res.send({ data: result });
+  }
+);
+
+router.post(
+  "/users/search",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const blacklistedWords = ["and", "then", "or"];
+    const whiteListedChars = /[^A-Za-z0-9-|]/g;
+    let searchParameters = req.body.searchParameters.split(" ");
+    searchParameters = searchParameters
+      .filter((word) => !blacklistedWords.includes(word))
+      .map((word) => word + "|")
+      .toString()
+      .replace(whiteListedChars, "")
+      .slice(0, -1);
+
+    const [result, _] = await db.execute(
+      "SELECT first_name, last_name, profile_image_url FROM users WHERE first_name REGEXP ?  ORDER BY first_name",
+      [searchParameters]
+    );
+    console.log(searchParameters);
+    console.log(result);
+    res.send({ data: result });
   }
 );
 
@@ -90,7 +145,7 @@ router.get(
   "/api/user",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.status(200).send({ data: req.user.first_name});
+    res.status(200).send({ data: req.user.first_name });
   }
 );
 

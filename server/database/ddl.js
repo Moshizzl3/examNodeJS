@@ -4,7 +4,7 @@ const isDeleteMode = true;
 
 if (isDeleteMode) {
   db.execute("DROP TABLE IF EXISTS likes");
-  db.execute("DROP TABLE IF EXISTS friends");
+  db.execute("DROP TABLE IF EXISTS followers");
   db.execute("DROP TABLE IF EXISTS comments");
   db.execute("DROP TABLE IF EXISTS messages");
   db.execute("DROP TABLE IF EXISTS posts");
@@ -18,6 +18,7 @@ db.execute(
     last_name VARCHAR(100),
     mail VARCHAR(50),
     profile_image_url VARCHAR(300) NULL, 
+    cover_image_url VARCHAR(300) NULL,
     password VARCHAR(500))
   `
 );
@@ -58,25 +59,25 @@ db.execute(
       `
 );
 
-db.execute(`CREATE TABLE IF NOT EXISTS friends(
+db.execute(`CREATE TABLE IF NOT EXISTS followers(
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER,
-  friend_user_id INTEGER,
-  CONSTRAINT fk_friends_users FOREIGN KEY(user_id) REFERENCES users(id),
-  CONSTRAINT fk_friends_users_friend FOREIGN KEY(friend_user_id) REFERENCES users(id)
+  following_user_id INTEGER,
+  CONSTRAINT fk_following_users FOREIGN KEY(user_id) REFERENCES users(id),
+  CONSTRAINT fk_following_users_follower FOREIGN KEY(following_user_id) REFERENCES users(id)
 )`);
 
 //create test data
 if (isDeleteMode) {
   // Create some users
   db.execute(
-    `INSERT INTO users(first_name, last_name, mail, password, profile_image_url) VALUES(?,?,?,?,?)`,
-    ["SvampeBob", "Firkant", "mail@mail.dk", await bcrypt.hash("123", 12), "mo.jpeg"]
+    `INSERT INTO users(first_name, last_name, mail, password, profile_image_url, cover_image_url) VALUES(?,?,?,?,?,?)`,
+    ["SvampeBob", "Firkant", "mail@mail.dk", await bcrypt.hash("123", 12), "mo.jpeg", "space.jpg"]
   );
 
   db.execute(
-    `INSERT INTO users(first_name, last_name, mail, password, profile_image_url) VALUES(?,?,?,?,?)`,
-    ["Patrick", "mogensen", "mail1@mail.dk", await bcrypt.hash("1234", 12), "bla.jpg"]
+    `INSERT INTO users(first_name, last_name, mail, password, profile_image_url, cover_image_url) VALUES(?,?,?,?,?,?)`,
+    ["Patrick", "mogensen", "mail1@mail.dk", await bcrypt.hash("1234", 12), "bla.jpg", "space.jpg"]
   );
 
   // Create some posts
@@ -138,6 +139,12 @@ if (isDeleteMode) {
       2,
     ]
   );
+
+  // create som followers
+  db.execute(`INSERT INTO followers (user_id, following_user_id) VALUES(?,?)`, [1,2])
+  db.execute(`INSERT INTO followers (user_id, following_user_id) VALUES(?,?)`, [2,1])
+
+
 
   // // create some comments
   // db.execute(`INSERT INTO comments(text, created_on, user_id, posts_id)`, [
