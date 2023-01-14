@@ -105,11 +105,10 @@ router.post(
       .slice(0, -1);
 
     const [result, _] = await db.execute(
-      "SELECT first_name, last_name, profile_image_url FROM users WHERE first_name REGEXP ?  ORDER BY first_name",
+      "SELECT id, first_name, last_name, profile_image_url FROM users WHERE first_name REGEXP ?  ORDER BY first_name",
       [searchParameters]
     );
-    console.log(searchParameters);
-    console.log(result);
+    
     res.send({ data: result });
   }
 );

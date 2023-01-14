@@ -12,6 +12,7 @@
     TableHead,
     TableHeadCell,
     Avatar,
+    P,
   } from "flowbite-svelte";
   import Post from "../components/Post.svelte";
   import Input from "flowbite-svelte/forms/Input.svelte";
@@ -44,7 +45,7 @@
   async function searchPeople() {
     searchResultPeople = [];
     const body = { searchParameters };
-    const response = await fetch($BASE_URL + "/users/search", {
+    const response = await fetch(`${$BASE_URL}/users/search`, {
       method: "POST",
       headers: {
         Authorization: $cookie,
@@ -59,6 +60,7 @@
     searchResultPeople = data.data;
     isApproved = true;
   }
+  
   async function load_pic(people) {
     const url = `${$BASE_URL}/posts/image/${people}`;
     const options = {
@@ -72,6 +74,20 @@
     } else {
       console.log("HTTP-Error: " + response.status);
     }
+  }
+
+  async function followPerson(followingId) {
+    const response = await fetch(`${$BASE_URL}/followers`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: $cookie,
+      },
+      body: JSON.stringify({ followingId }),
+    });
+    if (!response.ok) {
+    }
+    //something happens after following like a toastr or notification, maybe both
   }
 </script>
 
@@ -107,7 +123,8 @@
                 <TableHead>
                   <TableHeadCell />
                   <TableHeadCell>Name</TableHeadCell>
-                  <TableHeadCell>Following since</TableHeadCell>
+                  <TableHeadCell>Country</TableHeadCell>
+                  <TableHeadCell />
                 </TableHead>
                 <TableBody>
                   {#each searchResultPeople as people}
@@ -120,7 +137,18 @@
                         </div>
                       </TableBodyCell>
                       <TableBodyCell>{people.first_name}</TableBodyCell>
-                      <TableBodyCell>Laptop</TableBodyCell>
+                      <TableBodyCell>{people.first_name}</TableBodyCell>
+                      <TableBodyCell>
+                        <div class="w-full flex justify-center">
+                          <Button
+                            class="m-1 w-1/2"
+                            color="alternative"
+                            size="xs"
+                            on:click={() => followPerson(people.id)}
+                            >Follow</Button
+                          >
+                        </div>
+                      </TableBodyCell>
                     </TableBodyRow>
                   {/each}
                 </TableBody>

@@ -72,12 +72,26 @@ if (isDeleteMode) {
   // Create some users
   db.execute(
     `INSERT INTO users(first_name, last_name, mail, password, profile_image_url, cover_image_url) VALUES(?,?,?,?,?,?)`,
-    ["SvampeBob", "Firkant", "mail@mail.dk", await bcrypt.hash("123", 12), "mo.jpeg", "space.jpg"]
+    [
+      "SvampeBob",
+      "Firkant",
+      "mail@mail.dk",
+      await bcrypt.hash("123", 12),
+      "mo.jpeg",
+      "space.jpg",
+    ]
   );
 
   db.execute(
     `INSERT INTO users(first_name, last_name, mail, password, profile_image_url, cover_image_url) VALUES(?,?,?,?,?,?)`,
-    ["Patrick", "mogensen", "mail1@mail.dk", await bcrypt.hash("1234", 12), "bla.jpg", "space.jpg"]
+    [
+      "Patrick",
+      "mogensen",
+      "mail1@mail.dk",
+      await bcrypt.hash("1234", 12),
+      "bla.jpg",
+      "space.jpg",
+    ]
   );
 
   // Create some posts
@@ -141,10 +155,29 @@ if (isDeleteMode) {
   );
 
   // create som followers
-  db.execute(`INSERT INTO followers (user_id, following_user_id) VALUES(?,?)`, [1,2])
-  db.execute(`INSERT INTO followers (user_id, following_user_id) VALUES(?,?)`, [2,1])
+  db.execute(
+    `INSERT INTO followers (user_id, following_user_id) VALUES(?,?)`,
+    [1, 2]
+  );
+  db.execute(
+    `INSERT INTO followers (user_id, following_user_id) VALUES(?,?)`,
+    [2, 1]
+  );
 
+  // create some likes
 
+  db.execute(
+    `INSERT INTO likes (like_amount, created_on, user_id, posts_id, comments_id) VALUES(?,?,?,?,?)`,
+    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 1, 1, null]
+  );
+  db.execute(
+    `INSERT INTO likes (like_amount, created_on, user_id, posts_id, comments_id) VALUES(?,?,?,?,?)`,
+    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 1, 1, null]
+  );
+  db.execute(
+    `INSERT INTO likes (like_amount, created_on, user_id, posts_id, comments_id) VALUES(?,?,?,?,?)`,
+    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 1, 1, null]
+  );
 
   // // create some comments
   // db.execute(`INSERT INTO comments(text, created_on, user_id, posts_id)`, [
@@ -159,7 +192,6 @@ if (isDeleteMode) {
   //   2,
   //   1
   // ]);
-  
 }
 
 db.end();

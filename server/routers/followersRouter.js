@@ -18,4 +18,16 @@ router.get(
   }
 );
 
+router.post(
+  "/followers",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await db.execute(
+      "INSERT INTO followers(user_id, following_user_id) values(?,?)",[req.user.id, req.body.followingId]
+    );
+  }
+);
+
+
+
 export default router;
