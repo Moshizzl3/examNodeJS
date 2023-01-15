@@ -33,11 +33,15 @@
       body: JSON.stringify(body),
     });
 
-    $webSocket.emit("like", "hey it worked");
-    console.log("hey it worked");
-
     const data = await response.json();
-    likeId = data.data;
+    console.log(data);
+    likeId = data.data.likeId;
+
+    $webSocket.emit("like", {
+      like_user: data.data.likeInfo.like_user,
+      post_user: data.data.likeInfo.post_user,
+    });
+
     likeCount++;
   }
 

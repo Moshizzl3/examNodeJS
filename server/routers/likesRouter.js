@@ -63,7 +63,23 @@ router.post(
         req.body.commentId,
       ]
     );
-    res.status(200).send({ data: response[0].insertId });
+
+    const [likeInfo, _] = await db.execute(
+      `SELECT a.id, a.created_on, a.posts_id, b.id, a.user_id, c.first_name AS like_user, b.user_id, d.first_name AS post_user
+      FROM likes a
+      INNER JOIN posts b on a.posts_id = b.id
+      INNER JOIN users c on a.user_id=c.id
+      INNER JOIN users d on b.user_id=d.id
+      where a.id =?
+      ORDER BY created_on DESC
+      `,
+      [response[0].insertId]
+    );
+    res
+      .status(200)
+      .send({
+        data: { likeId: response[0].insertId, likeInfo: likeInfo[0] },
+      });
   }
 );
 

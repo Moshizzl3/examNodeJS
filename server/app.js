@@ -17,6 +17,8 @@ const io = new Server(server, {
   cors: { credentials: true, origin: true },
 });
 
+app.set('socketio', io);
+
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

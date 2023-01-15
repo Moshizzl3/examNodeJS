@@ -1,20 +1,15 @@
 <script>
-  import {
-    Sidebar,
-    SidebarGroup,
-    Input,
-    SidebarWrapper,
-  } from "flowbite-svelte";
-  import Post from "./Post.svelte";
-  import SearchResultPost from "./SearchResultPost.svelte";
+  import { Input } from "flowbite-svelte";
   import Timeline from "./Timeline.svelte";
   import { BASE_URL, webSocket, cookie } from "../store/global.js";
   import { onMount } from "svelte";
 
+  let isApproved = false;
   let notificationList = [];
   $webSocket.on("notification", (data) => {
     notificationList = [...notificationList, data];
   });
+
 
   async function getRecent() {
     const response = await fetch(`${$BASE_URL}/likes/post`, {
@@ -23,9 +18,11 @@
         "Content-type": "application-json",
       },
     });
+
     const data = await response.json();
-    console.log(data.data)
-    notificationList =  [...notificationList, data.data];
+
+    notificationList = [...notificationList, ...data.data];
+    isApproved = true;
   }
 
   onMount(getRecent);
@@ -54,9 +51,11 @@
     </div>
     <Input id="search-navbar" class="pl-10" placeholder="Search..." />
   </div>
-  {#each notificationList as notification}
-    <p>{notification}</p>
-  {/each}
+  {#if isApproved}
+    {#each notificationList as notification}
+      <p>{notification.like_user} liked {notification.post_user} post`</p>
+    {/each}
+  {/if}
   <div class="mt-2">
     <p class="dark:bg-white">Feed</p>
   </div>
