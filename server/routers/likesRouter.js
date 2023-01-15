@@ -1,5 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
+import { Socket } from "socket.io";
+import connection from "../database/connection.js";
 import db from "../database/connection.js";
 import "../utils/passport.js";
 
@@ -45,8 +47,6 @@ router.post(
         req.body.commentId,
       ]
     );
-
-    req.io.emmit("liked-status", "Mo", "mo");
 
     res.status(200).send({ data: response[0].insertId });
   }

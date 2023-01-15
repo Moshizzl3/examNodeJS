@@ -14,10 +14,6 @@ const io = new Server(server, {
   cors: { credentials: true, origin: true },
 });
 
-app.use((req, res, next) => {
-    req.io = io;
-    return next();
-  });
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -29,5 +25,17 @@ app.use(followersRouter);
 app.use(likesRouter);
 
 const PORT = process.env.PORT || 3000;
+
+io.on("connection", (socket) => {
+  console.log(`A socket connected on id ${socket.id}`);
+
+  socket.on("like", (data) => {
+    socket.broadcast.emit("notification", data);
+  });
+
+  io.on("disconnect", () => {
+    console.log(`Socket ${socket.id} left.`);
+  });
+});
 
 server.listen(PORT, () => console.log("app is now running on port:", PORT));
