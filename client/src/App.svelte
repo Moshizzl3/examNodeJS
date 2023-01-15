@@ -15,6 +15,9 @@
 </script>
 
 <main class="flex flex-col items-center w-full h-screen">
+  <div hidden={true}>
+    <DarkMode />
+  </div>
   <Router>
     <div>
       <Route path="/"><FrontPage /></Route>
@@ -26,9 +29,8 @@
     <PrivateRoute path="/explore"><ExplorePage /></PrivateRoute>
     <PrivateRoute path="/inbox"><InboxPage /></PrivateRoute>
     <PrivateRoute path="/friends"><FriendsPage /></PrivateRoute>
-    <PrivateRoute path="/settings"><SettingsPage /></PrivateRoute>
     <PrivateRoute path="/profile"><Profile /></PrivateRoute>
+    <PrivateRoute path="/settings"><SettingsPage /></PrivateRoute>
     <Route component={PageNotFound} />
   </Router>
-  <DarkMode />
 </main>

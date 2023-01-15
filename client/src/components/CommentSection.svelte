@@ -37,10 +37,7 @@
     console.log(data);
     likeId = data.data.likeId;
 
-    $webSocket.emit("like", {
-      like_user: data.data.likeInfo.like_user,
-      post_user: data.data.likeInfo.post_user,
-    });
+    $webSocket.emit("like", data.data.likeInfo);
 
     likeCount++;
   }

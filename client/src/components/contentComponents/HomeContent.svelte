@@ -1,7 +1,7 @@
 <script>
-  import Post from "../components/Post.svelte";
-  import NewPost from "../components/NewPost.svelte";
-  import { cookie, BASE_URL } from "../store/global.js";
+  import Post from "../Post.svelte";
+  import NewPost from "../NewPost.svelte";
+  import { cookie, BASE_URL } from "../../store/global.js";
   import { onMount } from "svelte";
 
   let isApproved = false;

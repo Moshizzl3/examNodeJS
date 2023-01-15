@@ -1,11 +1,11 @@
 <script>
-  import Post from "./Post.svelte";
-  import { cookie, BASE_URL } from "../store/global.js";
+  import Post from "../Post.svelte";
+  import { cookie, BASE_URL } from "../../store/global.js";
   import { onMount } from "svelte";
   import { Button } from "flowbite-svelte";
   import { Tabs, TabItem } from "flowbite-svelte";
-  import ProfileDesign from "./ProfileDesign.svelte";
-  import Following from "./Following.svelte";
+  import ProfileDesign from "../ProfileDesign.svelte";
+  import Following from "../Following.svelte";
   let isApproved = false;
   let posts;
   let userName;

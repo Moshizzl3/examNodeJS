@@ -30,7 +30,7 @@ db.execute(
       created_on DATETIME,
       image_url VARCHAR(300) NULL,
       user_id INTEGER,
-      CONSTRAINT fk_posts_user FOREIGN KEY(user_id) REFERENCES users(id))`
+      CONSTRAINT fk_posts_user FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)`
 );
 
 db.execute(
@@ -40,8 +40,8 @@ db.execute(
       created_on DATETIME, 
       user_id INTEGER,
       posts_id INTEGER,
-      CONSTRAINT fk_comments_posts FOREIGN KEY(posts_id) REFERENCES posts(id),
-      CONSTRAINT fk_comments_users FOREIGN KEY(user_id) REFERENCES posts(id))
+      CONSTRAINT fk_comments_posts FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE,
+      CONSTRAINT fk_comments_users FOREIGN KEY(user_id) REFERENCES posts(id) ON DELETE CASCADE)
       `
 );
 
@@ -53,9 +53,9 @@ db.execute(
       user_id INTEGER,
       posts_id INTEGER,
       comments_id INTEGER,
-      CONSTRAINT fk_likes_posts FOREIGN KEY(posts_id) REFERENCES posts(id),
-      CONSTRAINT fk_likes_comments FOREIGN KEY(posts_id) REFERENCES posts(id),
-      CONSTRAINT fk_likes_users FOREIGN KEY(user_id) REFERENCES posts(id))
+      CONSTRAINT fk_likes_posts FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE,
+      CONSTRAINT fk_likes_comments FOREIGN KEY(posts_id) REFERENCES posts(id) ON DELETE CASCADE,
+      CONSTRAINT fk_likes_users FOREIGN KEY(user_id) REFERENCES posts(id) ON DELETE CASCADE)
       `
 );
 
@@ -63,8 +63,8 @@ db.execute(`CREATE TABLE IF NOT EXISTS followers(
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER,
   following_user_id INTEGER,
-  CONSTRAINT fk_following_users FOREIGN KEY(user_id) REFERENCES users(id),
-  CONSTRAINT fk_following_users_follower FOREIGN KEY(following_user_id) REFERENCES users(id)
+  CONSTRAINT fk_following_users FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT fk_following_users_follower FOREIGN KEY(following_user_id) REFERENCES users(id) ON DELETE CASCADE
 )`);
 
 //create test data

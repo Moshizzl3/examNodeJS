@@ -8,8 +8,8 @@ opts.secretOrKey = "secret";
 passport.use(
   new Strategy(opts, async function (jwt_payload, done) {
     const [user, _] = await db.execute(
-      "SELECT * FROM users WHERE id=? AND mail=?",
-      [jwt_payload.id, jwt_payload.mail]
+      "SELECT * FROM users WHERE id=?",
+      [jwt_payload.id]
     );
     if (!user) {
       return done(null, false);
