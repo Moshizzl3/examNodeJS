@@ -8,6 +8,13 @@
   import Post from "./Post.svelte";
   import SearchResultPost from "./SearchResultPost.svelte";
   import Timeline from "./Timeline.svelte";
+  import {webSocket} from "../store/global.js"
+
+  let notificationList = [1, 2, 3];
+  $webSocket.on("notification", (data) => {
+    notificationList = [...notificationList, data]
+    console.log(notificationList)
+  });
 </script>
 
 <div
@@ -33,6 +40,9 @@
     </div>
     <Input id="search-navbar" class="pl-10" placeholder="Search..." />
   </div>
+  {#each notificationList as notification}
+    <p>{notification}</p>
+  {/each}
   <div class="mt-2">
     <p class="dark:bg-white">Feed</p>
   </div>

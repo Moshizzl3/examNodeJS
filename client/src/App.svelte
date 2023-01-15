@@ -12,7 +12,6 @@
   import PageNotFound from "./pages/PageNotFound/PageNotFound.svelte";
   import Profile from "./pages/Profile/Profile.svelte";
   import HomePage from "./pages/HomePage/HomePage.svelte";
-
 </script>
 
 <main class="flex flex-col items-center w-full h-screen">
@@ -29,7 +28,7 @@
     <PrivateRoute path="/friends"><FriendsPage /></PrivateRoute>
     <PrivateRoute path="/settings"><SettingsPage /></PrivateRoute>
     <PrivateRoute path="/profile"><Profile /></PrivateRoute>
-    <Route component={PageNotFound}></Route>
+    <Route component={PageNotFound} />
   </Router>
   <DarkMode />
 </main>

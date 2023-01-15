@@ -9,11 +9,8 @@
   } from "flowbite-svelte";
   import { onMount } from "svelte";
   import { BASE_URL, cookie } from "../store/global";
-  import { io } from "socket.io-client";
+  import { webSocket } from "../store/global.js";
 
-  const socket = io("http://localhost:8080");
-  socket.on("liked-status", (message) => console.log(message));
-  
   export let postId;
   export let commentId = null;
 
@@ -35,6 +32,9 @@
       },
       body: JSON.stringify(body),
     });
+
+    $webSocket.emit("like", "hey it worked");
+    console.log("hey it worked");
 
     const data = await response.json();
     likeId = data.data;
@@ -58,7 +58,6 @@
     });
     const data = await response.json();
     likeId = data.data;
-    console.log(likeId);
   }
 
   async function getLikeCount() {
