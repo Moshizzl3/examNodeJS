@@ -1,7 +1,5 @@
 import { Router } from "express";
 import passport from "passport";
-import { Socket } from "socket.io";
-import connection from "../database/connection.js";
 import db from "../database/connection.js";
 import "../utils/passport.js";
 
@@ -18,6 +16,24 @@ router.get(
     );
 
     res.status(200).send({ data: rows[0].like_count });
+  }
+);
+
+router.get(
+  "/likes/post",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const [rows, _] = await db.execute(
+      `SELECT a.id, a.created_on, a.posts_id, b.id, a.user_id, c.first_name AS like_user, b.user_id, d.first_name AS post_user
+      FROM likes a
+      INNER JOIN posts b on a.posts_id = b.id
+      INNER JOIN users c on a.user_id=c.id
+      INNER JOIN users d on b.user_id=d.id
+      ORDER BY created_on DESC
+      LIMIT 5
+      `
+    );
+    res.status(200).send({ data: rows });
   }
 );
 
@@ -47,7 +63,6 @@ router.post(
         req.body.commentId,
       ]
     );
-
     res.status(200).send({ data: response[0].insertId });
   }
 );

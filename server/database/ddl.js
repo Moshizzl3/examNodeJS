@@ -168,15 +168,15 @@ if (isDeleteMode) {
 
   db.execute(
     `INSERT INTO likes (like_amount, created_on, user_id, posts_id, comments_id) VALUES(?,?,?,?,?)`,
-    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 1, 1, null]
+    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 1, 5, null]
   );
   db.execute(
     `INSERT INTO likes (like_amount, created_on, user_id, posts_id, comments_id) VALUES(?,?,?,?,?)`,
-    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 1, 1, null]
+    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 1, 5, null]
   );
   db.execute(
     `INSERT INTO likes (like_amount, created_on, user_id, posts_id, comments_id) VALUES(?,?,?,?,?)`,
-    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 1, 1, null]
+    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 2, 1, null]
   );
 
   // // create some comments

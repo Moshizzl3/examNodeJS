@@ -8,13 +8,27 @@
   import Post from "./Post.svelte";
   import SearchResultPost from "./SearchResultPost.svelte";
   import Timeline from "./Timeline.svelte";
-  import {webSocket} from "../store/global.js"
+  import { BASE_URL, webSocket, cookie } from "../store/global.js";
+  import { onMount } from "svelte";
 
-  let notificationList = [1, 2, 3];
+  let notificationList = [];
   $webSocket.on("notification", (data) => {
-    notificationList = [...notificationList, data]
-    console.log(notificationList)
+    notificationList = [...notificationList, data];
   });
+
+  async function getRecent() {
+    const response = await fetch(`${$BASE_URL}/likes/post`, {
+      headers: {
+        Authorization: $cookie,
+        "Content-type": "application-json",
+      },
+    });
+    const data = await response.json();
+    console.log(data.data)
+    notificationList =  [...notificationList, data.data];
+  }
+
+  onMount(getRecent);
 </script>
 
 <div
