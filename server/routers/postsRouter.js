@@ -20,6 +20,21 @@ router.get(
   }
 );
 
+router.get(
+    "/posts/user/:id",
+    passport.authenticate("jwt", { session: false }),
+    async (req, res) => {
+      const [posts, _] = await db.execute(
+        "SELECT a.id,a.text,a.created_on,a.user_id,a.image_url, b.first_name, b.profile_image_url FROM posts a INNER JOIN users b ON a.user_id=b.id WHERE user_id = ? ORDER BY created_on DESC",
+        [req.params.id]
+      );
+      res.status(200).send({
+        succes: true,
+        data: posts,
+      });
+    }
+  );
+
 router.post(
   "/posts",
   passport.authenticate("jwt", { session: false }),

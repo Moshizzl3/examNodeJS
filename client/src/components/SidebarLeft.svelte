@@ -66,7 +66,7 @@
     
             </svelte:fragment>
           </SidebarItem>
-          <SidebarItem label="Inbox">
+          <SidebarItem label="Inbox" href="profile/follower">
             <svelte:fragment slot="icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

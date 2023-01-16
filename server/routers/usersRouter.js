@@ -15,6 +15,7 @@ router.get(
     ]);
 
     const user = {
+      id: rows[0].id,
       firstName: rows[0].first_name,
       lastName: rows[0].last_name,
       mail: rows[0].mail,
@@ -33,22 +34,27 @@ router.get(
   }
 );
 router.get(
-  "/api/users/:id",
+  "/api/users/user/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    const [rows, col] = await db.execute("SELECT * from users WHERE id = ?", [
-      req.params.id,
-    ]);
+    try {
+      const [rows, col] = await db.execute("SELECT * from users WHERE id = ?", [
+        req.params.id,
+      ]);
 
-    const user = {
-      firstName: rows[0].first_name,
-      lastName: rows[0].last_name,
-      mail: rows[0].mail,
-      profileImageUrl: rows[0].profile_image_url,
-      coverImageUrl: rows[0].cover_image_url,
-    };
+      const user = {
+        id: rows[0].id,
+        firstName: rows[0].first_name,
+        lastName: rows[0].last_name,
+        mail: rows[0].mail,
+        profileImageUrl: rows[0].profile_image_url,
+        coverImageUrl: rows[0].cover_image_url,
+      };
 
-    res.status(200).send({ data: user });
+      res.status(200).send({ data: user });
+    } catch (err) {
+      res.status(400).send({ data: err });
+    }
   }
 );
 
@@ -63,8 +69,6 @@ router.get("/api/users/:mail", async (req, res) => {
     });
   } else return res.status(404).send({ mesaage: "no" });
 });
-
-
 
 router.post("/api/users", async (req, res) => {
   const user = { ...req.body };

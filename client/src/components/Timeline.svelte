@@ -33,7 +33,7 @@
           >
             <div class="relative">
               <Img
-                src="public/img/mo.jpeg"
+                src="/public/img/mo.jpeg"
                 alt="sample 1"
                 size="w-6"
                 imgClass="h-6 object-cover"
