@@ -15,8 +15,8 @@
   let followingList = [];
   let imageObjectURL;
 
-  async function getMyFollowings() {
-    const response = await fetch(`${$BASE_URL}/followers`, {
+  async function getFollowers() {
+    const response = await fetch(`${$BASE_URL}/followers/following`, {
       headers: {
         Authorization: $cookie,
         "Content-type": "application/json",
@@ -30,7 +30,6 @@
       followingList = data.data;
     }
   }
-
   async function loadPic(id) {
     console.log(id);
     const url = `${$BASE_URL}/users/profile-image/follower/${id}`;
@@ -50,7 +49,7 @@
     }
   }
 
-  onMount(getMyFollowings);
+  onMount(getFollowers);
 </script>
 
 <Table color="default" hoverable={true}>
@@ -64,15 +63,15 @@
       <TableBodyRow>
         <TableBodyCell>
           <div class="w-full flex justify-center">
-            {#await loadPic(following.following_user_id)}
-              <p>loading</p>
+            {#await loadPic(following.user_id)}
+              <p>Loading</p>
             {:then}
               <Avatar src={imageObjectURL} rounded class="object-cover" />
             {/await}
           </div>
         </TableBodyCell>
         <TableBodyCell>
-          <A href={`profile/follower/?user=${following.following_user_id}`}>
+          <A href={`profile/follower/?user=${following.user_id}`}>
             {following.first_name}
           </A>
         </TableBodyCell>

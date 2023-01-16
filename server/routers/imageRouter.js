@@ -77,6 +77,11 @@ router.get(
   }
 );
 
+router.get("/posts/image/:imageUrl", function (req, res) {
+  console.log("here")
+  res.sendFile(path.resolve(`./public/images/${req.params.imageUrl}`));
+});
+
 router.post("/upload_image", upload.array("files"), (req, res) => {
   try {
     res.status(200).send({ data: req.files[0].filename });

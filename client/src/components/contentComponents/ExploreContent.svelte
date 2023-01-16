@@ -1,6 +1,5 @@
 <script>
   import { cookie, BASE_URL } from "../../store/global.js";
-  import { onMount } from "svelte";
   import {
     Button,
     Tabs,
@@ -12,7 +11,7 @@
     TableHead,
     TableHeadCell,
     Avatar,
-    P,
+    A,
   } from "flowbite-svelte";
   import Post from "../Post.svelte";
   import Input from "flowbite-svelte/forms/Input.svelte";
@@ -60,7 +59,7 @@
     searchResultPeople = data.data;
     isApproved = true;
   }
-  
+
   async function load_pic(people) {
     const url = `${$BASE_URL}/posts/image/${people}`;
     const options = {
@@ -136,7 +135,13 @@
                           {/await}
                         </div>
                       </TableBodyCell>
-                      <TableBodyCell>{people.first_name}</TableBodyCell>
+                      <TableBodyCell>
+                        <A
+                          href={`profile/follower/?user=${people.id}`}
+                        >
+                          {people.first_name}
+                        </A></TableBodyCell
+                      >
                       <TableBodyCell>{people.first_name}</TableBodyCell>
                       <TableBodyCell>
                         <div class="w-full flex justify-center">

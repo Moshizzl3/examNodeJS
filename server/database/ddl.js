@@ -62,6 +62,7 @@ db.execute(
 db.execute(`CREATE TABLE IF NOT EXISTS followers(
   id INTEGER PRIMARY KEY AUTO_INCREMENT,
   user_id INTEGER,
+  followed_on DATETIME,
   following_user_id INTEGER,
   CONSTRAINT fk_following_users FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE,
   CONSTRAINT fk_following_users_follower FOREIGN KEY(following_user_id) REFERENCES users(id) ON DELETE CASCADE
@@ -100,7 +101,7 @@ if (isDeleteMode) {
     [
       "Get to know caPs and support him on his road to victory in League of Legends Season 2023! 😎",
       new Date().toISOString().slice(0, 19).replace("T", " "),
-      "0bcfb617-bb0e-438e-8fe6-186a2ed57486cat_or_dog_1.jpg",
+      "space.jpg",
       1,
     ]
   );
@@ -119,7 +120,7 @@ if (isDeleteMode) {
     [
       "Get to know caPs and support him on his road to victory in League of Legends Season 2023! 😎",
       new Date().toISOString().slice(0, 19).replace("T", " "),
-      "0bcfb617-bb0e-438e-8fe6-186a2ed57486cat_or_dog_1.jpg",
+      "space.jpg",
       1,
     ]
   );
@@ -156,12 +157,12 @@ if (isDeleteMode) {
 
   // create som followers
   db.execute(
-    `INSERT INTO followers (user_id, following_user_id) VALUES(?,?)`,
-    [1, 2]
+    `INSERT INTO followers (user_id, followed_on,following_user_id) VALUES(?,?,?)`,
+    [1, new Date().toISOString().slice(0, 19).replace("T", " "), 2]
   );
   db.execute(
-    `INSERT INTO followers (user_id, following_user_id) VALUES(?,?)`,
-    [2, 1]
+    `INSERT INTO followers (user_id, followed_on,following_user_id) VALUES(?,?,?)`,
+    [2, new Date().toISOString().slice(0, 19).replace("T", " "), 1]
   );
 
   // create some likes

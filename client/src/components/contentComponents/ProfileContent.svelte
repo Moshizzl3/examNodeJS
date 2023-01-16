@@ -6,10 +6,10 @@
   import { Tabs, TabItem } from "flowbite-svelte";
   import ProfileDesign from "../ProfileDesign.svelte";
   import Following from "../Following.svelte";
+  import Followers from "../Followers.svelte";
   let isApproved = false;
   let posts;
   let userName;
-
 
   async function getPosts() {
     const response = await fetch($BASE_URL + "/posts", {
@@ -53,8 +53,7 @@
       <div class="relative bottom-16 left-0">
         <div class="w-full flex">
           <div class="flex flex-col w-full justify-start mt-5">
-            <p class="text-left">{userName}</p>
-            <p class="text-left">Joined January 2011</p>
+            <p class="text-left dark:text-white">{userName}</p>
           </div>
         </div>
         <div class="flex w-full justify-end relative bottom-20 left-0">
@@ -80,10 +79,7 @@
           <Following />
         </TabItem>
         <TabItem title="Followers">
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            <b>Users:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <Followers />
         </TabItem>
       </Tabs>
     </div>

@@ -32,7 +32,7 @@
   class="container w-1/2  p-2 sidebar-container md:flex max-h-full flex-col items-start justify-center"
 >
   <div class="mt-2">
-    <p class="dark:bg-white">Feed</p>
+    <p class="dark:text-white">Feed</p>
   </div>
   <div class="container flex flex-col p-5 items-start overflow-y-auto">
     <Timeline notifications={notificationList} />

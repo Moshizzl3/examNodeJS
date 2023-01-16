@@ -4,8 +4,6 @@
   import { onMount } from "svelte";
   import { Button } from "flowbite-svelte";
   import { Tabs, TabItem } from "flowbite-svelte";
-  import ProfileDesign from "../ProfileDesign.svelte";
-  import Following from "../Following.svelte";
   import FollowerProfileDesign from "../FollowerProfileDesign.svelte";
   let isApproved = false;
   let posts;
@@ -36,7 +34,7 @@
     posts = data.data;
   }
 
-  async function getUserName() {
+  async function getUser() {
     const url = `${$BASE_URL}/api/users/user/${profileId}`;
     const options = {
       method: "GET",
@@ -51,7 +49,7 @@
     user = data.data;
   }
 
-  onMount(getUserName);
+  onMount(getUser);
   onMount(getPosts);
 </script>
 
@@ -78,8 +76,8 @@
     <div
       class="container p-2 w-full  flex flex-col m-2 rounded relative  bottom-16 left-0 "
     >
-      <Tabs defaultClass="flex justify-between" contentClass="bg-inherit">
-        <TabItem open title="Kvidr's">
+      <Tabs defaultClass="flex" contentClass="bg-inherit">
+        <TabItem open title="Kvidr's" defaultClass="m-1">
  
             {#if isApproved}
               {#each posts as post}
@@ -89,15 +87,6 @@
               <h1>No Content</h1>
             {/if}
 
-        </TabItem>
-        <TabItem title="Following">
-          <Following />
-        </TabItem>
-        <TabItem title="Followers">
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            <b>Users:</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
         </TabItem>
       </Tabs>
     </div>

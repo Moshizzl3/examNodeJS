@@ -15,10 +15,10 @@
   import HomePage from "./pages/HomePage/HomePage.svelte";
 </script>
 
-<main class="flex flex-col items-center w-full h-screen">
+<main class="flex flex-col items-center w-full h-screen main-container ">
   <div hidden={true}>
     <DarkMode />
-  </div>
+  </div >
   <Router>
     <div>
       <Route path="/"><FrontPage /></Route>

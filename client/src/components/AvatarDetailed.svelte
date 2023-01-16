@@ -6,7 +6,7 @@
   export let userName;
   export let userImage;
 
-  postDate = postDate;
+
   let date;
   let time;
   let imageObjectURL;
@@ -53,7 +53,7 @@
     >
       <p>
         {#if postDate}
-          posted: {date} {time}
+          posted: {new Date(postDate).toDateString()}
         {/if}
       </p>
     </div>

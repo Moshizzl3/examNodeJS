@@ -8,7 +8,7 @@
   let profileImageObjectURL;
   let coverImageObjectURL;
 
-  async function load_profile_pic() {
+  async function loadProfilePic() {
     const url = `${$BASE_URL}/users/profile-image/follower/${profileId}`;
     const options = {
       method: "GET",
@@ -25,7 +25,7 @@
     }
   }
 
-  async function load_cover_pic() {
+  async function loadCoverPic() {
     const url = `${$BASE_URL}/users/cover-image/follower/${profileId}`;
     const options = {
       method: "GET",
@@ -42,8 +42,8 @@
     }
   }
 
-  onMount(load_profile_pic);
-  onMount(load_cover_pic);
+  onMount(loadProfilePic);
+  onMount(loadCoverPic);
 </script>
 
 <div>

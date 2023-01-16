@@ -5,7 +5,7 @@ import imageRouter from "./routers/imageRouter.js";
 import emailRouter from "./routers/emailRouter.js";
 import followersRouter from "./routers/followersRouter.js";
 import postsRouter from "./routers/postsRouter.js";
-import socketioJwt from "socketio-jwt";
+import helmet from "helmet";
 import likesRouter from "./routers/likesRouter.js";
 import http from "http";
 import { Server } from "socket.io";
@@ -17,10 +17,9 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: { credentials: true, origin: true },
+  autoconnect: true,
 });
-
-app.set("socketio", io);
-
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -35,12 +34,12 @@ app.use(emailRouter);
 
 const PORT = process.env.PORT || 3000;
 
+const wrapMiddlewareForSocketIo = (middleware) => (socket, next) =>
+  middleware(socket.request, {}, next);
+  
+io.use(wrapMiddlewareForSocketIo(passport.initialize()));
 io.use(
-  socketioJwt.authorize({
-    secret: "secret",
-    handshake: true,
-    auth_header_required: true,
-  })
+  wrapMiddlewareForSocketIo(passport.authenticate(["jwt"], { session: false }))
 );
 
 io.on("connection", (socket) => {

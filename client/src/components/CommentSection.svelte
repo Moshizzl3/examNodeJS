@@ -10,6 +10,7 @@
   import { onMount } from "svelte";
   import { BASE_URL, cookie } from "../store/global";
   import { webSocket } from "../store/global.js";
+  import toastr from "toastr";
 
   export let postId;
   export let commentId = null;
@@ -69,6 +70,11 @@
     likeCount = data.data;
   }
 
+  function featureNotReady() {
+    toastr.options.timeOut = 2000;
+    toastr.success("Feature comming soon");
+  }
+
   onMount(getLikeCount);
   onMount(getLikeStatus);
 </script>
@@ -77,7 +83,7 @@
   <ButtonGroup class="justify-center mt-2 container">
     <div class="md:flex justify-between w-3/4 gap-2 mb-2 container">
       <!--insights-->
-      <Button class="!p-2 border-none"
+      <Button class="!p-2 border-none" on:click={featureNotReady}
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
@@ -97,7 +103,7 @@
         ></Button
       >
       <!--comment-->
-      <Button class="!p-2 border-none">
+      <Button class="!p-2 border-none" on:click={featureNotReady}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
@@ -115,7 +121,7 @@
       </Button>
 
       <!--retweet-->
-      <Button class="!p-2 border-none"
+      <Button class="!p-2 border-none" on:click={featureNotReady}
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
@@ -171,7 +177,7 @@
         <p class="pl-1">{likeCount ? likeCount : "0"}</p>
       </div>
       <!--share-->
-      <Button class="!p-2 border-none" on:click={() => (formModal = true)}
+      <Button class="!p-2 border-none" on:click={featureNotReady}
         ><svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
@@ -191,40 +197,4 @@
       >
     </div>
   </ButtonGroup>
-  <Modal bind:open={formModal} size="xs" autoclose={false}>
-    <form class="flex flex-col space-y-6" action="#">
-      <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">
-        Sign in to our platform
-      </h3>
-      <Label class="space-y-2">
-        <span>Email</span>
-        <Input
-          type="email"
-          name="email"
-          placeholder="name@company.com"
-          required
-        />
-      </Label>
-      <Label class="space-y-2">
-        <span>Your password</span>
-        <Input type="password" name="password" placeholder="•••••" required />
-      </Label>
-      <div class="flex items-start">
-        <Checkbox>Remember me</Checkbox>
-        <a
-          href="/"
-          class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
-          >Lost password?</a
-        >
-      </div>
-      <Button type="submit" class="w-full1">Login to your account</Button>
-      <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-        Not registered? <a
-          href="/"
-          class="text-blue-700 hover:underline dark:text-blue-500"
-          >Create account</a
-        >
-      </div>
-    </form>
-  </Modal>
 </div>

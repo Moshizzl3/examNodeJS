@@ -7,10 +7,11 @@
 </script>
 
 <div
-  class="container md:flex items-start  max-h-full justify-center main-container p-2"
+  class="container md:flex items-start justify-center main-container p-2"
 >
   <SideBar />
   <ExploreContent />
+  <SidebarRight/>
 </div>
 
 <Footer />
@@ -18,5 +19,6 @@
 <style>
   .main-container {
     max-height: calc(100vh - 15vh);
+    min-height: calc(100vh - 15vh);
   }
 </style>

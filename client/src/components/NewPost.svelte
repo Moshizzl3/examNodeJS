@@ -15,6 +15,7 @@
   import { BASE_URL, cookie } from "../store/global.js";
   import { createEventDispatcher } from "svelte";
   import AvatarSimple from "./AvatarSimple.svelte";
+  import toastr from "toastr";
 
   let formModal = false;
   let postText;
@@ -62,6 +63,12 @@
       imageName=""
     }
   }
+
+
+  function featureNotReady() {
+    toastr.options.timeOut = 2000;
+    toastr.success("Feature comming soon");
+  }
 </script>
 
 <div class="w-full border container bg-green p-2">
@@ -102,7 +109,7 @@
             >
           </ToolbarGroup>
           <ToolbarGroup>
-            <ToolbarButton name="Add emoji"
+            <ToolbarButton name="Add emoji" on:click={featureNotReady}
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

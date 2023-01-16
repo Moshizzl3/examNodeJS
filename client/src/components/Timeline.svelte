@@ -7,20 +7,19 @@
   let profileImageObjectURL;
 
   async function load_pic(image_url) {
-      const url = `${$BASE_URL}/posts/image/${image_url}`;
-      const options = {
-        method: "GET",
-      };
-      let response = await fetch(url, options);
-      if (response.status === 200) {
-        const imageBlob = await response.blob();
-        profileImageObjectURL = URL.createObjectURL(imageBlob);
-        return profileImageObjectURL;
-      } else {
-        console.log("HTTP-Error: " + response.status);
-      }
+    const url = `${$BASE_URL}/posts/image/${image_url}`;
+    const options = {
+      method: "GET",
+    };
+    let response = await fetch(url, options);
+    if (response.status === 200) {
+      const imageBlob = await response.blob();
+      profileImageObjectURL = URL.createObjectURL(imageBlob);
+      return profileImageObjectURL;
+    } else {
+      console.log("HTTP-Error: " + response.status);
     }
-
+  }
 </script>
 
 <div class="w-content">
@@ -43,11 +42,13 @@
             <div class="justify-between items-center mb-3 sm:flex">
               <time
                 class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0"
-                >{notification.created_on}</time
+                >{new Date(notification.created_on).toDateString()}</time
               >
-              <div
-                class="text-sm font-normal text-gray-500 lex dark:text-gray-300"
-              />
+              <time
+                class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0"
+                >{new Date(notification.created_on).toLocaleTimeString()}</time
+              >
+              <div/>
             </div>
 
             <div

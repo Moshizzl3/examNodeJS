@@ -4,14 +4,9 @@
   import toastr from "toastr";
   import {
     Card,
-    ToolbarButton,
-    Dropdown,
-    DropdownItem,
-    Avatar,
     Button,
     Input,
     Label,
-    Checkbox,
   } from "flowbite-svelte";
 
   let mail = "";
@@ -40,12 +35,12 @@
   }
 </script>
 
-<div class="container w-screen h-full main-container">
-  <div class="flex h-full justify-center items-center">
+<div class="h-full w-full main-container">
+  <div class="flex flex-col items-center justify-center h-full w-full">
     <Card>
-      <form class="flex flex-col space-y-6" action="/">
+      <form class="flex flex-col space-y-6">
         <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">
-          Sign in to our platform
+          Sign in to Kvidr
         </h3>
         <Label class="space-y-2">
           <span>Email</span>
@@ -71,7 +66,7 @@
           <a
             href="/forgot-password"
             class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
-            >Lost password?</a
+            >Forgot password?</a
           >
         </div>
 
