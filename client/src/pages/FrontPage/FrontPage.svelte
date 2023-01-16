@@ -35,10 +35,10 @@
   }
 </script>
 
-<div class="h-full w-full main-container">
+<div class="h-full  main-container">
   <div class="flex flex-col items-center justify-center h-full w-full">
-    <Card>
-      <form class="flex flex-col space-y-6">
+    <Card class="w-1/2">
+      <form class="flex flex-col space-y-8">
         <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">
           Sign in to Kvidr
         </h3>
@@ -83,11 +83,12 @@
     </Card>
   </div>
 </div>
-
 <Footer />
+
 
 <style>
   .main-container {
-    min-height: calc(100vh - 15vh);
+    min-height: calc(100vh - 20vh);
+    min-width: calc(100vw - 40vh);
   }
 </style>

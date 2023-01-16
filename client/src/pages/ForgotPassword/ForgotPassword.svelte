@@ -4,9 +4,7 @@
   import ForgotPasswordForm from "../../components/contentComponents/ForgotPassword.svelte";
 </script>
 
-<div
-  class="container flex w-screen items-center mainContainer p-2"
->
+<div class="container flex w-screen items-center mainContainer p-2">
   <div class="container h-full flex flex-col items-center">
     <div>
       <p class="dark:text-white">Forgot Password</p>
