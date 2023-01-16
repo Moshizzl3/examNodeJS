@@ -19,6 +19,9 @@
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(data),
       });
+      toastr.options.timeOut = 3000;
+      toastr.success("Mail has been sent, please check your inbox");
+      mail =""
     }
   }
 
