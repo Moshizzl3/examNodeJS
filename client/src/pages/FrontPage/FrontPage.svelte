@@ -40,53 +40,8 @@
   }
 </script>
 
-<div
-  class="container w-screen md:flex items-center justify-center main-container"
->
-  <div class="container w-[100%] p-2">
-    <div class="container latest-content h-full flex justify-center">
-      <Card padding="sm" class="w-3/4">
-        <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white">
-          Latest login
-        </h5>
-        <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">
-          Click to login again
-        </p>
-        <div class="flex justify-end">
-          <ToolbarButton
-            class="dots-menu text-gray-900 bg-white dark:text-white dark:bg-gray-800"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5"
-              ><path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-              /></svg
-            >
-          </ToolbarButton>
-          <Dropdown class="w-36" triggeredBy=".dots-menu">
-            <DropdownItem>Remove</DropdownItem>
-          </Dropdown>
-        </div>
-        <div class="flex flex-col items-center pb-4">
-          <Avatar size="lg" src="src/ressources/images/mo.jpeg" />
-          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-            Bonnie Green
-          </h5>
-          <div class="flex mt-4 space-x-3 lg:mt-6">
-            <Button color="light" class="dark:text-white">login</Button>
-          </div>
-        </div>
-      </Card>
-    </div>
-  </div>
-  <div class="container login-content p-2">
+<div class="container w-screen h-full main-container">
+  <div class="flex h-full justify-center items-center">
     <Card>
       <form class="flex flex-col space-y-6" action="/">
         <h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">
@@ -112,18 +67,19 @@
             bind:value={password}
           />
         </Label>
-        <div class="flex items-start">
-          <Checkbox>Remember me</Checkbox>
+        <div class="">
           <a
-            href="/"
+            href="/forgot-password"
             class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500"
             >Lost password?</a
           >
         </div>
+
         <Button on:click={login} class="w-full">Login to your account</Button>
+
         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
           Not registered? <a
-            href="/"
+            href="/signup"
             class="text-blue-700 hover:underline dark:text-blue-500"
             >Create account</a
           >

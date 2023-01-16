@@ -29,7 +29,7 @@ router.post("/api/login", async (req, res) => {
 
   console.log("payload", payload);
 
-  const token = jwt.sign(payload, "secret", { expiresIn: "1d" });
+  const token = jwt.sign(payload, process.env.ACCES_TOKEN_SECRET, { expiresIn: "1d" });
 
   res.status(200).send({
     succes: true,

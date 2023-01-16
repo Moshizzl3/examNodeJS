@@ -2,6 +2,7 @@ import express from "express";
 import userRouter from "./routers/usersRouter.js";
 import authencationRouter from "./routers/authenticationRouter.js";
 import authorizationRouter from "./routers/authorizationRouter.js";
+import emailRouter from "./routers/emailRouter.js";
 import followersRouter from "./routers/followersRouter.js";
 import socketioJwt from "socketio-jwt";
 import likesRouter from "./routers/likesRouter.js";
@@ -28,6 +29,7 @@ app.use(authencationRouter);
 app.use(authorizationRouter);
 app.use(followersRouter);
 app.use(likesRouter);
+app.use(emailRouter);
 
 const PORT = process.env.PORT || 3000;
 

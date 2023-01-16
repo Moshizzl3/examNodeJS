@@ -9,6 +9,7 @@
   let isApproved = false;
   let posts;
   let userName;
+  let profileId = new URLSearchParams(window.location.search).get("user");
 
 
   async function getPosts() {

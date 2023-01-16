@@ -35,14 +35,14 @@
   }
 </script>
 
-<div class="main-container border-4">
+<div class="main-container">
   <div class="pb-16">
     <div class="text-center min-h-1/2">
       <Heading
-        tag="h1"
+        tag="h5"
         class="mb-4"
         customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
-        >Sign up</Heading
+        >Are you ready to sign up, and have a blast at kViddr?</Heading
       >
       <P class="mb-6 text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400"
         >Are you ready to sign up, and have a blast at kViddr?</P

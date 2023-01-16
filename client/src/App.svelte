@@ -11,6 +11,7 @@
   import SettingsPage from "./pages/SettingsPage/SettingsPage.svelte";
   import PageNotFound from "./pages/PageNotFound/PageNotFound.svelte";
   import Profile from "./pages/Profile/Profile.svelte";
+  import FollowerProfile from "./pages/FollowerProfile/FollowerProfile.svelte";
   import HomePage from "./pages/HomePage/HomePage.svelte";
 </script>
 
@@ -30,6 +31,7 @@
     <PrivateRoute path="/inbox"><InboxPage /></PrivateRoute>
     <PrivateRoute path="/friends"><FriendsPage /></PrivateRoute>
     <PrivateRoute path="/profile"><Profile /></PrivateRoute>
+    <PrivateRoute path="/profile/*"><FollowerProfile /></PrivateRoute>
     <PrivateRoute path="/settings"><SettingsPage /></PrivateRoute>
     <Route component={PageNotFound} />
   </Router>
