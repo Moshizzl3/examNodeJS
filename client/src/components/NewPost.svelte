@@ -57,6 +57,9 @@
     });
     if (response.ok) {
       dispatcher("message", { text: "ok" });
+      postText=""
+      imageFiles=""
+      imageName=""
     }
   }
 </script>

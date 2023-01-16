@@ -1,9 +1,10 @@
 import express from "express";
 import userRouter from "./routers/usersRouter.js";
 import authencationRouter from "./routers/authenticationRouter.js";
-import authorizationRouter from "./routers/authorizationRouter.js";
+import imageRouter from "./routers/imageRouter.js";
 import emailRouter from "./routers/emailRouter.js";
 import followersRouter from "./routers/followersRouter.js";
+import postsRouter from "./routers/postsRouter.js";
 import socketioJwt from "socketio-jwt";
 import likesRouter from "./routers/likesRouter.js";
 import http from "http";
@@ -18,7 +19,7 @@ const io = new Server(server, {
   cors: { credentials: true, origin: true },
 });
 
-app.set('socketio', io);
+app.set("socketio", io);
 
 app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
@@ -26,8 +27,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(userRouter);
 app.use(authencationRouter);
-app.use(authorizationRouter);
+app.use(imageRouter);
 app.use(followersRouter);
+app.use(postsRouter);
 app.use(likesRouter);
 app.use(emailRouter);
 
@@ -44,12 +46,9 @@ io.use(
 io.on("connection", (socket) => {
   console.log(`A socket connected on id ${socket.id}`);
 
-  socket.on(
-    "like",
-    (data) => {
-      socket.broadcast.emit("notification", data);
-    }
-  );
+  socket.on("like", (data) => {
+    socket.broadcast.emit("notification", data);
+  });
 
   io.on("disconnect", () => {
     console.log(`Socket ${socket.id} left.`);

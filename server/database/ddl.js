@@ -100,7 +100,7 @@ if (isDeleteMode) {
     [
       "Get to know caPs and support him on his road to victory in League of Legends Season 2023! 😎",
       new Date().toISOString().slice(0, 19).replace("T", " "),
-      "1173fa06-bdfb-4651-b152-72346f51f610000_ePQknW8cTp8.jpg",
+      "0bcfb617-bb0e-438e-8fe6-186a2ed57486cat_or_dog_1.jpg",
       1,
     ]
   );
@@ -110,7 +110,7 @@ if (isDeleteMode) {
     [
       "Get to know caPs and support him on his road to victory in League of Legends Season 2023! 😎",
       new Date().toISOString().slice(0, 19).replace("T", " "),
-      "1173fa06-bdfb-4651-b152-72346f51f610000_ePQknW8cTp8.jpg",
+      "0bcfb617-bb0e-438e-8fe6-186a2ed57486cat_or_dog_1.jpg",
       1,
     ]
   );
@@ -119,7 +119,7 @@ if (isDeleteMode) {
     [
       "Get to know caPs and support him on his road to victory in League of Legends Season 2023! 😎",
       new Date().toISOString().slice(0, 19).replace("T", " "),
-      "1173fa06-bdfb-4651-b152-72346f51f610000_ePQknW8cTp8.jpg",
+      "0bcfb617-bb0e-438e-8fe6-186a2ed57486cat_or_dog_1.jpg",
       1,
     ]
   );
@@ -129,7 +129,7 @@ if (isDeleteMode) {
     [
       "Get to know caPs and support him on his road to victory in League of Legends Season 2023! 😎",
       new Date().toISOString().slice(0, 19).replace("T", " "),
-      "1173fa06-bdfb-4651-b152-72346f51f610000_ePQknW8cTp8.jpg",
+      "0bcfb617-bb0e-438e-8fe6-186a2ed57486cat_or_dog_1.jpg",
       2,
     ]
   );
@@ -139,7 +139,7 @@ if (isDeleteMode) {
     [
       "Get to know caPs and support him on his road to victory in League of Legends Season 2023! 😎",
       new Date().toISOString().slice(0, 19).replace("T", " "),
-      "1173fa06-bdfb-4651-b152-72346f51f610000_ePQknW8cTp8.jpg",
+      "0bcfb617-bb0e-438e-8fe6-186a2ed57486cat_or_dog_1.jpg",
       2,
     ]
   );
@@ -149,7 +149,7 @@ if (isDeleteMode) {
     [
       "Get to know caPs and support him on his road to victory in League of Legends Season 2023! 😎",
       new Date().toISOString().slice(0, 19).replace("T", " "),
-      "1173fa06-bdfb-4651-b152-72346f51f610000_ePQknW8cTp8.jpg",
+      "0bcfb617-bb0e-438e-8fe6-186a2ed57486cat_or_dog_1.jpg",
       2,
     ]
   );

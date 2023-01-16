@@ -27,7 +27,7 @@
   }
 
   async function getUserName() {
-    const url = `${$BASE_URL}/api/user`;
+    const url = `${$BASE_URL}/api/users/name`;
     const options = {
       method: "GET",
       headers: {
