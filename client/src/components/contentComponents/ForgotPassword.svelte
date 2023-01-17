@@ -1,5 +1,5 @@
 <script>
-  import { BASE_URL, cookie } from "../../store/global";
+  import { BASE_URL } from "../../store/global";
   import { onMount } from "svelte";
   import toastr from "toastr";
   import { Input, Button } from "flowbite-svelte";

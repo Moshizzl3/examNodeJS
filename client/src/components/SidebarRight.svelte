@@ -1,5 +1,4 @@
 <script>
-  import { Input } from "flowbite-svelte";
   import Timeline from "./Timeline.svelte";
   import { BASE_URL, webSocket, cookie } from "../store/global.js";
   import { onMount } from "svelte";

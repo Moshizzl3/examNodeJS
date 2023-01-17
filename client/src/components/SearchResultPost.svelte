@@ -1,5 +1,5 @@
 <script>
-  import { Card, Listgroup, Avatar } from "flowbite-svelte";
+  import { Card, Avatar } from "flowbite-svelte";
   let list = [
     {
       img: { src: "/images/profile-picture-1.webp", alt: "Neil Sims" },

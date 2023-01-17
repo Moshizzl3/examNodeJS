@@ -3,7 +3,6 @@
   import SettingsContent from "../../components/contentComponents/SettingsContent.svelte";
   import SideBar from "../../components/SidebarLeft.svelte";
   import SidebarRight from "../../components/SidebarRight.svelte";
-  import { webSocket } from "../../store/global.js";
 </script>
 
 <div

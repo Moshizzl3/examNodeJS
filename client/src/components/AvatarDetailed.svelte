@@ -11,10 +11,6 @@
   let time;
   let imageObjectURL;
 
-  if (postDate) {
-    date = postDate.split("T")[0];
-    time = postDate.split("T")[1].split(".")[0].slice(0, 5);
-  }
 
   async function load_profile_pic() {
     const url = `${$BASE_URL}/api/images/img-name/${userImage}`;

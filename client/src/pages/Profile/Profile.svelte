@@ -1,8 +1,6 @@
 <script>
   import Footer from "../../components/Footer.svelte";
   import ProfileContent from "../../components/contentComponents/ProfileContent.svelte";
-
-
   import SideBar from "../../components/SidebarLeft.svelte";
   import SidebarRight from "../../components/SidebarRight.svelte";
 

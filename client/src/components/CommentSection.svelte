@@ -1,10 +1,6 @@
 <script>
   import {
     Button,
-    Modal,
-    Label,
-    Input,
-    Checkbox,
     ButtonGroup,
   } from "flowbite-svelte";
   import { onMount } from "svelte";

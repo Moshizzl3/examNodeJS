@@ -1,5 +1,5 @@
 <script>
-  import { Card, Button, Toggle, Avatar } from "flowbite-svelte";
+  import { Card } from "flowbite-svelte";
   import AvatarDetailed from "./AvatarDetailed.svelte";
   import CommentSection from "./CommentSection.svelte";
   import { BASE_URL, cookie } from "../store/global";

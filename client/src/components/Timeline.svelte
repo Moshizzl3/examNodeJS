@@ -1,8 +1,6 @@
 <script>
   import { Activity, A } from "flowbite-svelte";
   export let notifications;
-
-  let profileImageObjectURL;
 </script>
 
 <div class="w-content">

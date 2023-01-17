@@ -7,7 +7,6 @@
     Button,
     Modal,
     Label,
-    Input,
     Fileupload,
     Img,
   } from "flowbite-svelte";

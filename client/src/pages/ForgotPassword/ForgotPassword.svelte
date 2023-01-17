@@ -1,6 +1,5 @@
 <script>
   import Footer from "../../components/Footer.svelte";
-
   import ForgotPasswordForm from "../../components/contentComponents/ForgotPassword.svelte";
 </script>
 

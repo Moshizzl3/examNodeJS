@@ -1,7 +1,6 @@
 <script>
   import ExploreContent from "../../components/contentComponents/ExploreContent.svelte";
   import Footer from "../../components/Footer.svelte";
-  import HomeContent from "../../components/contentComponents/HomeContent.svelte";
   import SideBar from "../../components/SidebarLeft.svelte";
   import SidebarRight from "../../components/SidebarRight.svelte";
 </script>

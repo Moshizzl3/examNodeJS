@@ -4,7 +4,6 @@
     Input,
     Label,
     Heading,
-    P,
     Checkbox,
     A,
     Button,
