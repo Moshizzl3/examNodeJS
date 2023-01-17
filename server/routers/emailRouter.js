@@ -2,12 +2,12 @@ import { Router } from "express";
 import passport from "passport";
 import { sendMail } from "../utils/emailGenerator.js";
 import jwt from "jsonwebtoken";
-import "./middleware/passport.js";
+import "../middleware/passport.js";
 
 const router = Router();
 
 router.get(
-  "/api/mail/token",
+  "/token",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     if (!req.user) {
@@ -17,16 +17,13 @@ router.get(
   }
 );
 
-router.post("/mail/forgot", async (req, res) => {
+router.post("/forgot", async (req, res) => {
   const user = req.body.data;
   const mail = await sendMail(
     user,
     jwt.sign(user, process.env.ACCES_TOKEN_SECRET, { expiresIn: "5m" })
   );
 
-  if (!mail.ok) {
-    return res.status(404).send({ data: "not ok" });
-  }
   return res.status(200).send({ data: mail });
 });
 

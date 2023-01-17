@@ -1,6 +1,6 @@
 import { Strategy, ExtractJwt } from "passport-jwt";
 import passport from "passport";
-import db from "../../database/connection.js";
+import db from "../database/connection.js";
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.ACCES_TOKEN_SECRET;

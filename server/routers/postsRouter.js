@@ -1,8 +1,8 @@
 import { Router } from "express";
 import passport from "passport";
 import db from "../database/connection.js";
-import { postValidationRules, validate } from "./middleware/validation.js";
-import "./middleware/passport.js";
+import { postValidationRules, validate } from "../middleware/validation.js";
+import "../middleware/passport.js";
 
 const router = Router();
 

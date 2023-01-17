@@ -1,7 +1,7 @@
 import { Router } from "express";
 import passport from "passport";
 import db from "../database/connection.js";
-import "./middleware/passport.js";
+import "../middleware/passport.js";
 
 const router = Router();
 router.use(passport.initialize());

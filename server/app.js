@@ -11,7 +11,7 @@ import http from "http";
 import { Server } from "socket.io";
 import cors from "cors";
 import passport from "passport";
-import "./routers/middleware/passport.js";
+import "./middleware/passport.js";
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -32,7 +32,7 @@ app.use("/api/images", imageRouter);
 app.use("/api/followers", followersRouter);
 app.use("/api/posts", postsRouter);
 app.use("/api/likes", likesRouter);
-app.use(emailRouter);
+app.use("/api/mail",emailRouter);
 
 const wrapMiddlewareForSocketIo = (middleware) => (socket, next) =>
   middleware(socket.request, {}, next);

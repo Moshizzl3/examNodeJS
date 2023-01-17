@@ -1,16 +1,16 @@
 import Router from "express";
 import passport from "passport";
 import db from "../database/connection.js";
-import "./middleware/passport.js";
+import "../middleware/passport.js";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import multer from "multer";
 
 var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
+  destination: (req, file, cb) => {
     cb(null, path.resolve("public/images"));
   },
-  filename: function (req, file, cb) {
+  filename: (req, file, cb) => {
     cb(null, uuidv4() + file.originalname);
   },
 });

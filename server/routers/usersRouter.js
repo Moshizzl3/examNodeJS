@@ -2,8 +2,8 @@ import Router from "express";
 import db from "../database/connection.js";
 import bcrypt from "bcrypt";
 import passport from "passport";
-import "./middleware/passport.js";
-import { validate, signupValidationRules } from "./middleware/validation.js";
+import "../middleware/passport.js";
+import { validate, signupValidationRules } from "../middleware/validation.js";
 
 const router = Router();
 
@@ -12,7 +12,7 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
-      const [rows, col] = await db.execute("SELECT * from users WHERE id = ?", [
+      const [rows, col] = await db.execute("SELECT * FROM users WHERE id = ?", [
         req.user.id,
       ]);
 
@@ -62,7 +62,7 @@ router.get(
   }
 );
 
-router.get("/:mail", async (req, res) => {
+router.get("/mail/:mail", async (req, res) => {
   try {
     const [rows, columns] = await db.execute(
       "SELECT * FROM users WHERE mail=?",

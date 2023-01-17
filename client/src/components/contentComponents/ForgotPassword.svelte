@@ -9,19 +9,22 @@
   let hasValidToken = false;
 
   async function sendMail() {
-    const response = await fetch(`${$BASE_URL}/api/users/${mail}`);
+    const response = await fetch(`${$BASE_URL}/api/users/mail/${mail}`);
     const data = await response.json();
     console.log(data.data);
 
     if (response.ok) {
-      const mailResponse = await fetch(`${$BASE_URL}/mail/forgot`, {
+      const mailResponse = await fetch(`${$BASE_URL}/api/mail/forgot`, {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(data),
       });
-      toastr.options.timeOut = 3000;
-      toastr.success("Mail has been sent, please check your inbox");
-      mail =""
+      if(mailResponse.ok){
+
+        toastr.options.timeOut = 3000;
+        toastr.success("Mail has been sent, please check your inbox");
+        mail =""
+      } 
     }
   }
 
