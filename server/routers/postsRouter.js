@@ -1,7 +1,8 @@
 import { Router } from "express";
 import passport from "passport";
 import db from "../database/connection.js";
-import "../utils/passport.js";
+import { postValidationRules, validate } from "./middleware/validation.js";
+import "./middleware/passport.js";
 
 const router = Router();
 
@@ -45,6 +46,8 @@ router.get(
 
 router.post(
   "/",
+  postValidationRules(),
+  validate,
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {

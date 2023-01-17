@@ -11,11 +11,14 @@
   } from "flowbite-svelte";
   import Footer from "../../components/Footer.svelte";
 
+  toastr.options.timeOut = 3000;
+
   const user = {
     firstName: "",
     lastName: "",
     mail: "",
-    password: "",
+    password1: "",
+    password2: "",
   };
 
   async function signUp() {
@@ -24,23 +27,26 @@
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(user),
     });
-    if (response.ok) {
-      toastr.success("you are now signed up, you will be redirected shortly");
 
-      setTimeout(() => {
-        window.location.replace("/");
-      }, 3000);
-    } else {
+    if (!response.ok) {
+      const data = await response.json()
+      data.errors.forEach(element => {
+        toastr.error(element);
+      });
+      return;
     }
+
+    toastr.success("you are now signed up, you will be redirected shortly");
+    setTimeout(() => {
+      window.location.replace("/");
+    }, 3000);
   }
 </script>
 
 <div class="main-container">
   <div class="pb-16">
     <div class="text-center min-h-1/2">
-      <Heading
-        tag="h4"
-        class="mb-4"
+      <Heading tag="h4" class="mb-4"
         >Are you ready to sign up, and have a blast at kViddr?</Heading
       >
     </div>
@@ -82,20 +88,21 @@
           />
         </div>
         <div class="mb-6">
-          <Label for="password" class="mb-2">Password</Label>
+          <Label for="password1" class="mb-2">Password</Label>
           <Input
-            bind:value={user.password}
+            bind:value={user.password1}
             type="password"
-            id="password"
+            id="password1"
             placeholder="•••••••••"
             required
           />
         </div>
         <div class="mb-6">
-          <Label for="confirm_password" class="mb-2">Confirm password</Label>
+          <Label for="password2" class="mb-2">Confirm password</Label>
           <Input
+            bind:value={user.password2}
             type="password"
-            id="confirm_password"
+            id="password2"
             placeholder="•••••••••"
             required
           />

@@ -9,7 +9,7 @@
     Label,
     Input,
     Fileupload,
-    Img
+    Img,
   } from "flowbite-svelte";
   import AvatarDetailed from "./AvatarDetailed.svelte";
   import { BASE_URL, cookie } from "../store/global.js";
@@ -42,10 +42,10 @@
         const data = await response.json();
         imageUrl = data.data;
       }
-      post.imageUrl = imageUrl
-      postText=""
-      imageFiles=""
-      imageName=""
+      post.imageUrl = imageUrl;
+      postText = "";
+      imageFiles = "";
+      imageName = "";
     }
 
     const response = await fetch(`${$BASE_URL}/api/posts`, {
@@ -56,14 +56,16 @@
       method: "POST",
       body: JSON.stringify(post),
     });
-    if (response.ok) {
-      dispatcher("message", { text: "ok" });
-      postText=""
-      imageFiles=""
-      imageName=""
+    if (!response.ok) {
+      const data = await response.json();
+      toastr.error(data.errors);
+      return;
     }
+    dispatcher("message", { text: "ok" });
+    postText = "";
+    imageFiles = "";
+    imageName = "";
   }
-
 
   function featureNotReady() {
     toastr.options.timeOut = 2000;
@@ -73,10 +75,15 @@
 
 <div class="w-full border container bg-green p-2">
   <div class="user-container">
-    <AvatarSimple/>
+    <AvatarSimple />
   </div>
   {#if imageFiles}
-  <Img size="max-w-md"  alignment="mx-auto" src={URL.createObjectURL(imageFiles[0])} alt="sample 1"/>
+    <Img
+      size="max-w-md"
+      alignment="mx-auto"
+      src={URL.createObjectURL(imageFiles[0])}
+      alt="sample 1"
+    />
   {/if}
   <div class="mt-2 flex justify-center">
     <form class="w-full">

@@ -2,7 +2,7 @@ import { Router } from "express";
 import passport from "passport";
 import { sendMail } from "../utils/emailGenerator.js";
 import jwt from "jsonwebtoken";
-import "../utils/passport.js";
+import "./middleware/passport.js";
 
 const router = Router();
 

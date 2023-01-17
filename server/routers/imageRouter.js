@@ -1,7 +1,7 @@
 import Router from "express";
 import passport from "passport";
 import db from "../database/connection.js";
-import "../utils/passport.js";
+import "./middleware/passport.js";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
 import multer from "multer";
@@ -82,7 +82,6 @@ router.get(
     return res.sendFile(path.resolve(`./public/images/${req.params.imgUrl}`));
   }
 );
-
 
 router.post("/upload_image", upload.array("files"), (req, res) => {
   try {

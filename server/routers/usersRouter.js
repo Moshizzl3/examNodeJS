@@ -2,7 +2,8 @@ import Router from "express";
 import db from "../database/connection.js";
 import bcrypt from "bcrypt";
 import passport from "passport";
-import "../utils/passport.js";
+import "./middleware/passport.js";
+import { validate, signupValidationRules } from "./middleware/validation.js";
 
 const router = Router();
 
@@ -77,14 +78,15 @@ router.get("/:mail", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", signupValidationRules(), validate, async (req, res) => {
+  console.log(req.body);
   const user = { ...req.body };
   const saltRounds = 12;
-  user.password = await bcrypt.hash(user.password, saltRounds);
+  user.password1 = await bcrypt.hash(user.password1, saltRounds);
   try {
     await db.execute(
       "INSERT INTO users(first_name, last_name, mail, password) VALUES(?, ?, ?, ?);",
-      [user.firstName, user.lastName, user.mail, user.password]
+      [user.firstName, user.lastName, user.mail, user.password1]
     );
     return res.status(200).send({ data: "ok" });
   } catch (err) {
@@ -96,7 +98,7 @@ router.post(
   "/search",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     const blacklistedWords = ["and", "then", "or"];
     const whiteListedChars = /[^A-Za-z0-9-|]/g;
     let searchParameters = req.body.searchParameters.split(" ");
