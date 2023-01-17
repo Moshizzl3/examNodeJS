@@ -26,7 +26,9 @@ router.get(
   "/users/profile-image",
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
-    res.sendFile(path.resolve(`./public/images/${req.user.profile_image_url}`));
+    return res.sendFile(
+      path.resolve(`./public/images/${req.user.profile_image_url}`)
+    );
   }
 );
 router.get(
@@ -38,11 +40,11 @@ router.get(
         req.params.id,
       ]);
       console.log(req.params.id);
-      res.sendFile(
+      return res.sendFile(
         path.resolve(`./public/images/${rows[0].profile_image_url}`)
       );
     } catch (err) {
-      res.status(400).send({ data: err });
+      return res.status(400).send({ data: err });
     }
   }
 );
@@ -51,7 +53,9 @@ router.get(
   "/users/cover-image",
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
-    res.sendFile(path.resolve(`./public/images/${req.user.cover_image_url}`));
+    return res.sendFile(
+      path.resolve(`./public/images/${req.user.cover_image_url}`)
+    );
   }
 );
 
@@ -63,9 +67,11 @@ router.get(
       const [rows, _] = await db.execute("SELECT * FROM users WHERE id=?", [
         req.params.id,
       ]);
-      res.sendFile(path.resolve(`./public/images/${rows[0].cover_image_url}`));
+      return res.sendFile(
+        path.resolve(`./public/images/${rows[0].cover_image_url}`)
+      );
     } catch (err) {
-      res.status(400).send({ data: err });
+      return res.status(400).send({ data: err });
     }
   }
 );
@@ -73,20 +79,19 @@ router.get(
   "/users/images/:name",
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
-    res.sendFile(path.resolve(`./public/images/${req.params.name}`));
+    return res.sendFile(path.resolve(`./public/images/${req.params.name}`));
   }
 );
 
 router.get("/posts/image/:imageUrl", function (req, res) {
-  console.log("here")
-  res.sendFile(path.resolve(`./public/images/${req.params.imageUrl}`));
+  return res.sendFile(path.resolve(`./public/images/${req.params.imageUrl}`));
 });
 
 router.post("/upload_image", upload.array("files"), (req, res) => {
   try {
-    res.status(200).send({ data: req.files[0].filename });
+    return res.status(200).send({ data: req.files[0].filename });
   } catch {
-    res.status(400);
+    return res.status(400);
   }
 });
 

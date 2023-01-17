@@ -13,6 +13,7 @@ import cors from "cors";
 import passport from "passport";
 import "./utils/passport.js";
 
+const PORT = process.env.PORT || 3000;
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -24,7 +25,8 @@ app.use(cors({ credentials: true, origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(userRouter);
+
+app.use("api/users" ,userRouter);
 app.use(authencationRouter);
 app.use(imageRouter);
 app.use(followersRouter);
@@ -32,11 +34,12 @@ app.use(postsRouter);
 app.use(likesRouter);
 app.use(emailRouter);
 
-const PORT = process.env.PORT || 3000;
+
+
 
 const wrapMiddlewareForSocketIo = (middleware) => (socket, next) =>
   middleware(socket.request, {}, next);
-  
+
 io.use(wrapMiddlewareForSocketIo(passport.initialize()));
 io.use(
   wrapMiddlewareForSocketIo(passport.authenticate(["jwt"], { session: false }))

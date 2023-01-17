@@ -6,6 +6,17 @@ import "../utils/passport.js";
 
 const router = Router();
 
+router.get(
+  "/api/mail/token",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    if (!req.user) {
+      return res.sendStatus(401);
+    }
+    return res.status(200).send({ data: req.user.mail });
+  }
+);
+
 router.post("/mail/forgot", async (req, res) => {
   const user = req.body.data;
   const mail = await sendMail(
@@ -18,16 +29,5 @@ router.post("/mail/forgot", async (req, res) => {
   }
   return res.status(200).send({ data: mail });
 });
-
-router.get(
-  "/api/mail/token",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    if (!req.user) {
-      return res.sendStatus(401);
-    }
-    return res.status(200).send({ data: req.user.mail });
-  }
-);
 
 export default router;
