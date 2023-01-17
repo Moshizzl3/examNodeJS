@@ -104,7 +104,6 @@
             type="password"
             id="password2"
             placeholder="•••••••••"
-            required
           />
         </div>
         <Checkbox class="mb-6 space-x-1" required

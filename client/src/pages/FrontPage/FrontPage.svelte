@@ -8,6 +8,7 @@
     Input,
     Label,
   } from "flowbite-svelte";
+  import CookieConsent from "../../components/CookieConsent.svelte";
 
   let mail = "";
   let password = "";
@@ -81,6 +82,10 @@
         </div>
       </form>
     </Card>
+    <div class="w-full flex justify-center relative">
+
+      <CookieConsent/>
+    </div>
   </div>
 </div>
 <Footer />

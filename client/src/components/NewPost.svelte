@@ -94,6 +94,7 @@
         class="test"
         placeholder="Write a comment"
         bind:value={postText}
+        required
       >
         <Toolbar slot="header" embedded>
           <ToolbarGroup>
