@@ -33,8 +33,7 @@
       body: JSON.stringify(body),
     });
 
-    const data = await response.json();
-    console.log(data);
+    const data = await response.json();;
     likeId = data.data.likeId;
 
     $webSocket.emit("like", data.data.likeInfo);

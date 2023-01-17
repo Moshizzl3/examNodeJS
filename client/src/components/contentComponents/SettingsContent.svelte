@@ -148,9 +148,9 @@
         updateUserInfo();
         loadProfilePic();
       }
-      console.info(user);
       imageFiles = "";
       imageName = "";
+      loadProfilePic()
     }
   }
 
@@ -173,9 +173,9 @@
         updateUserInfo();
         loadCoverPic();
       }
-      console.info(user);
       imageFiles = "";
       imageName = "";
+      loadCoverPic()
     }
   }
 

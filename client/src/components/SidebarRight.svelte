@@ -19,11 +19,9 @@
     });
 
     const data = await response.json();
-    console.log(data)
 
     notificationList = [...notificationList, ...data.data];
     isApproved = true;
-    console.log(notificationList);
   }
 
   onMount(getRecent);

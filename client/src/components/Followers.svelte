@@ -26,12 +26,10 @@
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data.data);
       followingList = data.data;
     }
   }
   async function loadPic(id) {
-    console.log(id);
     const url = `${$BASE_URL}/api/images/profile-image/follower/${id}`;
     const options = {
       headers: {

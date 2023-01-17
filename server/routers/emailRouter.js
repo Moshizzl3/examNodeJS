@@ -23,8 +23,8 @@ router.post("/forgot", async (req, res) => {
     user,
     jwt.sign(user, process.env.ACCES_TOKEN_SECRET, { expiresIn: "5m" })
   );
-
   return res.status(200).send({ data: mail });
+
 });
 
 export default router;

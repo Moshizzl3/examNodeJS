@@ -1,4 +1,5 @@
 import express from "express";
+import rateLimit from "express-rate-limit"
 import userRouter from "./routers/usersRouter.js";
 import authencationRouter from "./routers/authenticationRouter.js";
 import imageRouter from "./routers/imageRouter.js";
@@ -20,8 +21,15 @@ const io = new Server(server, {
   cors: { credentials: true, origin: true },
   autoconnect: true,
 });
+
 app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors({ credentials: true, origin: true }));
+
+const limiter = rateLimit({
+    windowMs: 10 * 60 * 1000,
+    max: 1000000
+})
+app.use(limiter)
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
