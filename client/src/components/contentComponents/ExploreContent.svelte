@@ -60,7 +60,7 @@
     isApproved = true;
   }
 
-  async function load_pic(imgUrl) {
+  async function loadPic(imgUrl) {
     const url = `${$BASE_URL}/api/images/img-name/${imgUrl}`;
     const options = {
       method: "GET",
@@ -132,7 +132,7 @@
                     <TableBodyRow>
                       <TableBodyCell>
                         <div class="w-full flex justify-center">
-                          {#await load_pic(people.profile_image_url) then imgUrl}
+                          {#await loadPic(people.profile_image_url) then imgUrl}
                             <Avatar src={imgUrl} rounded class="object-cover" />
                           {/await}
                         </div>

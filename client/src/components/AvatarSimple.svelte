@@ -6,7 +6,7 @@
   let userName;
   let profileImageObjectURL;
 
-  async function load_profile_pic() {
+  async function loadProfilePic() {
     const url = `${$BASE_URL}/api/images/profile-image`;
     const options = {
       method: "GET",
@@ -36,7 +36,7 @@
     const data = await response.json();
     userName = data.data;
   }
-  onMount(load_profile_pic);
+  onMount(loadProfilePic);
   onMount(getUserName);
 </script>
 

@@ -9,7 +9,7 @@
   let imageObjectURL;
 
   if (post.image_url) {
-    async function load_pic() {
+    async function loadPic() {
       const url = `${$BASE_URL}/api/images/img-name/${post.image_url}`;
       const options = {
         method: "GET",
@@ -27,7 +27,7 @@
       }
     }
 
-    onMount(load_pic);
+    onMount(loadPic);
   }
 </script>
 

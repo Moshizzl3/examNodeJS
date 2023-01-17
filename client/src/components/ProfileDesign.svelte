@@ -8,7 +8,7 @@
   let profileImageObjectURL;
   let coverImageObjectURL;
 
-  async function load_profile_pic() {
+  async function loadProfilePic() {
     const url = `${$BASE_URL}/api/images/profile-image`;
     const options = {
       method: "GET",
@@ -25,7 +25,7 @@
     }
   }
 
-  async function load_cover_pic() {
+  async function loadCoverPic() {
     const url = `${$BASE_URL}/api/images/cover-image`;
     const options = {
       method: "GET",
@@ -54,8 +54,8 @@
     const data = await response.json();
     userName = data.data;
   }
-  onMount(load_profile_pic);
-  onMount(load_cover_pic);
+  onMount(loadProfilePic);
+  onMount(loadCoverPic);
   onMount(getUserName);
 </script>
 

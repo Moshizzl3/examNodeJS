@@ -10,7 +10,6 @@
     Fileupload,
     Img,
   } from "flowbite-svelte";
-  import AvatarDetailed from "./AvatarDetailed.svelte";
   import { BASE_URL, cookie } from "../store/global.js";
   import { createEventDispatcher } from "svelte";
   import AvatarSimple from "./AvatarSimple.svelte";

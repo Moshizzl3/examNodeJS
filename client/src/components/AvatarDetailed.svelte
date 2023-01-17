@@ -12,7 +12,7 @@
   let imageObjectURL;
 
 
-  async function load_profile_pic() {
+  async function loadProfilePic() {
     const url = `${$BASE_URL}/api/images/img-name/${userImage}`;
     const options = {
       method: "GET",
@@ -31,7 +31,7 @@
     }
   }
   
-  onMount(load_profile_pic);
+  onMount(loadProfilePic);
 </script>
 
 <div class="flex items-center space-x-4">
