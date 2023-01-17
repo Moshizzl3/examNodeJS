@@ -38,10 +38,14 @@
         method: "POST",
         body: formData,
       });
-      if (response.ok) {
-        const data = await response.json();
-        imageUrl = data.data;
+      if (!response.ok) {
+        const imgData = response.json()
+        toastr.error(imgData)
+        console.log(imgData)
+        return
       }
+      const data = await response.json();
+      imageUrl = data.data;
       post.imageUrl = imageUrl;
       postText = "";
       imageFiles = "";

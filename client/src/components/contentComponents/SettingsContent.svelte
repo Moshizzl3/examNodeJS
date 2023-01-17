@@ -257,6 +257,7 @@
       <div
         class="w-1/2 h-full m-1 flex flex-col items-center"
         on:click={() => (profileImageModal = true)}
+        on:keydown
       >
         <P class="text-sm mb-2">Change profile picture</P>
         <Img
@@ -269,6 +270,7 @@
       <div
         class="w-1/2 m-1 flex flex-col items-center"
         on:click={() => (coverImageModal = true)}
+        on:keydown
       >
         <P class="text-sm mb-2">Change cover picture</P>
         <Img

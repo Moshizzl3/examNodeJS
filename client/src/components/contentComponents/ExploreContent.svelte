@@ -115,7 +115,7 @@
                 {#each searchResultPosts as post}
                   <Post {post} />
                 {/each}
-              {:else}{/if}
+              {/if}
             </div>
           </TabItem>
           <TabItem title="People" on:click={searchPeople}>
@@ -158,7 +158,7 @@
                   {/each}
                 </TableBody>
               </Table>
-            {:else}{/if}
+            {/if}
           </TabItem>
         </Tabs>
       </div>

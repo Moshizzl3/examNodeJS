@@ -20,9 +20,9 @@
 </script>
 
 {#if !isAccepted}
-  <div class="container mx-auto px-20 relative botton-12 right-48">
-    <div style="background-color:rgb(255, 255, 255)">
-      <div class="w-72 bg-white rounded-lg shadow-md p-6" style="cursor: auto;">
+  <div class="container mx-auto px-20 relative botton-12 right-48 dark:bg-inherit">
+    <div>
+      <div class="w-72 dark:bg-white rounded-lg shadow-md p-6" style="cursor: auto;">
         <div class="w-16 mx-auto relative -mt-10 mb-3">
           <img
             class="-mt-1"
@@ -35,7 +35,7 @@
           >We use cookies once logged in to provide a better user experience.</span
         >
         <div class="flex items-center justify-between">
-          <a class="text-xs text-gray-400 mr-1 hover:text-gray-800" href="#"
+          <a class="text-xs text-gray-400 mr-1 hover:text-gray-800" href="/"
             >Privacy Policy</a
           >
           <div class="w-1/2">
