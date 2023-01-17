@@ -82,7 +82,7 @@
         </div>
       </form>
     </Card>
-    <div class="w-full flex justify-center relative">
+    <div class="w-full flex justify-center relative h-1/4">
 
       <CookieConsent/>
     </div>

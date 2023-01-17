@@ -1,15 +1,26 @@
 <script>
   import { Button } from "flowbite-svelte";
+  import { onMount } from "svelte";
 
   let isAccepted = false;
 
   function acceptCookies() {
+    sessionStorage.setItem("cookieConsent", "true");
     isAccepted = true;
   }
+
+  function checkCookieConcent() {
+    const hasAccepted = sessionStorage.getItem("cookieConsent");
+    if (hasAccepted) {
+      isAccepted = true;
+    }
+  }
+
+  onMount(checkCookieConcent)
 </script>
 
 {#if !isAccepted}
-  <div class="container mx-auto px-20 relative botton-0 right-48">
+  <div class="container mx-auto px-20 relative botton-12 right-48">
     <div style="background-color:rgb(255, 255, 255)">
       <div class="w-72 bg-white rounded-lg shadow-md p-6" style="cursor: auto;">
         <div class="w-16 mx-auto relative -mt-10 mb-3">
