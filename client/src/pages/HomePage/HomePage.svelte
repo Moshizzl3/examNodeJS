@@ -7,7 +7,7 @@
 </script>
 
 <div
-  class="container w-100 md:flex items-start justify-start main-container p-2"
+  class="container w-100 md:flex h-full main-container p-2"
 >
   <SideBar />
   <HomeContent/>
