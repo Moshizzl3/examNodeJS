@@ -1,4 +1,4 @@
-# Node Examp - To run the project:
+# Node Exam - To run the project:
 
 ## Server:
 
