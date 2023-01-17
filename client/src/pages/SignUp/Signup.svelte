@@ -4,8 +4,6 @@
     Input,
     Label,
     Heading,
-    Checkbox,
-    A,
     Button,
   } from "flowbite-svelte";
   import Footer from "../../components/Footer.svelte";
@@ -105,9 +103,6 @@
             placeholder="•••••••••"
           />
         </div>
-        <Checkbox class="mb-6 space-x-1" required
-          >I agree with the <A href="/">terms and conditions</A>.</Checkbox
-        >
         <Button type="button" on:click={signUp}>Submit</Button>
       </form>
     </div>
