@@ -11,7 +11,7 @@
   });
 
   async function getRecent() {
-    const response = await fetch(`${$BASE_URL}/likes/post`, {
+    const response = await fetch(`${$BASE_URL}/api/likes/post`, {
       headers: {
         Authorization: $cookie,
         "Content-type": "application-json",
@@ -19,6 +19,7 @@
     });
 
     const data = await response.json();
+    console.log(data)
 
     notificationList = [...notificationList, ...data.data];
     isApproved = true;

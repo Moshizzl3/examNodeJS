@@ -2,7 +2,7 @@
   import { Card, Button, Toggle, Avatar } from "flowbite-svelte";
   import AvatarDetailed from "./AvatarDetailed.svelte";
   import CommentSection from "./CommentSection.svelte";
-  import { BASE_URL } from "../store/global";
+  import { BASE_URL, cookie } from "../store/global";
   import { onMount } from "svelte";
   let hCard = false;
   export let post;
@@ -10,9 +10,12 @@
 
   if (post.image_url) {
     async function load_pic() {
-      const url = `${$BASE_URL}/posts/image/${post.image_url}`;
+      const url = `${$BASE_URL}/api/images/img-name/${post.image_url}`;
       const options = {
         method: "GET",
+        headers: {
+          Authorization: $cookie,
+        },
       };
       let response = await fetch(url, options);
       if (response.status === 200) {
@@ -32,9 +35,9 @@
   <div class="user-container">
     <AvatarDetailed
       userImage={post.profile_image_url}
-      postDate="{post.created_on}"
+      postDate={post.created_on}
       userName={post.first_name}
-      />
+    />
   </div>
   <div class="mt-2 flex justify-center w-full">
     <Card img={imageObjectURL} horizontal reverse={hCard} class="w-full h-full">

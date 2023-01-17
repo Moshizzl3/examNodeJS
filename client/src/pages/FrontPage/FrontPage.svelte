@@ -16,7 +16,7 @@
   async function login() {
     const user = { mail: mail, password: password };
 
-    const response = await fetch(`${$BASE_URL}/api/login`, {
+    const response = await fetch(`${$BASE_URL}/api/authenticate`, {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(user),

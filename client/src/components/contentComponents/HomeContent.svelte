@@ -13,7 +13,7 @@
   }
 
   async function getPosts() {
-    const response = await fetch($BASE_URL + "/posts", {
+    const response = await fetch(`${$BASE_URL}/api/posts`, {
       headers: {
         Authorization: $cookie,
         "Content-type": "application-json",

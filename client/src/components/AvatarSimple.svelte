@@ -7,7 +7,7 @@
   let profileImageObjectURL;
 
   async function load_profile_pic() {
-    const url = `${$BASE_URL}/users/profile-image`;
+    const url = `${$BASE_URL}/api/images/profile-image`;
     const options = {
       method: "GET",
       headers: {

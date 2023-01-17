@@ -31,7 +31,7 @@
     if (imageFiles) {
       const formData = new FormData();
       formData.append("files", imageFiles[0]);
-      const response = await fetch(`${$BASE_URL}/upload_image`, {
+      const response = await fetch(`${$BASE_URL}/api/images/upload_image`, {
         headers: {
           Authorization: $cookie,
         },
@@ -48,7 +48,7 @@
       imageName=""
     }
 
-    const response = await fetch(`${$BASE_URL}/posts`, {
+    const response = await fetch(`${$BASE_URL}/api/posts`, {
       headers: {
         Authorization: $cookie,
         "Content-type": "application/json",

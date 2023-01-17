@@ -6,7 +6,7 @@ import "../utils/passport.js";
 const router = Router();
 
 router.get(
-  "/posts",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -25,7 +25,7 @@ router.get(
 );
 
 router.get(
-  "/posts/user/:id",
+  "/user/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -44,7 +44,7 @@ router.get(
 );
 
 router.post(
-  "/posts",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -67,7 +67,7 @@ router.post(
 );
 
 router.post(
-  "/posts/search",
+  "/search",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {

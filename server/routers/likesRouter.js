@@ -7,7 +7,7 @@ const router = Router();
 router.use(passport.initialize());
 
 router.get(
-  "/likes/post/count/:id",
+  "/post/count/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -23,12 +23,13 @@ router.get(
 );
 
 router.get(
-  "/likes/post",
+  "/post",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
       const [rows, _] = await db.execute(
-        `SELECT a.id, a.created_on, a.posts_id, b.id, a.user_id, c.first_name AS like_user, b.user_id, d.first_name AS post_user
+        `SELECT a.id, c.profile_image_url, a.created_on, a.posts_id, a.user_id, 
+        c.first_name AS like_user, b.user_id as post_user_id, d.first_name AS post_user
         FROM likes a
         INNER JOIN posts b on a.posts_id = b.id
         INNER JOIN users c on a.user_id=c.id
@@ -45,7 +46,7 @@ router.get(
 );
 
 router.get(
-  "/likes/post/status/:id",
+  "/post/status/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -61,7 +62,7 @@ router.get(
 );
 
 router.post(
-  "/likes/post",
+  "/post",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -97,7 +98,7 @@ router.post(
 );
 
 router.delete(
-  "/likes/post/:id",
+  "/post/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {

@@ -7,7 +7,7 @@ import "../utils/passport.js";
 const router = Router();
 
 router.get(
-  "/api/users",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -30,14 +30,14 @@ router.get(
   }
 );
 router.get(
-  "/api/users/name",
+  "/name",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     return res.status(200).send({ data: req.user.first_name });
   }
 );
 router.get(
-  "/api/users/user/:id",
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -61,7 +61,7 @@ router.get(
   }
 );
 
-router.get("/api/users/:mail", async (req, res) => {
+router.get("/:mail", async (req, res) => {
   try {
     const [rows, columns] = await db.execute(
       "SELECT * FROM users WHERE mail=?",
@@ -77,7 +77,7 @@ router.get("/api/users/:mail", async (req, res) => {
   }
 });
 
-router.post("/api/users", async (req, res) => {
+router.post("/", async (req, res) => {
   const user = { ...req.body };
   const saltRounds = 12;
   user.password = await bcrypt.hash(user.password, saltRounds);
@@ -93,9 +93,10 @@ router.post("/api/users", async (req, res) => {
 });
 
 router.post(
-  "/users/search",
+  "/search",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
+    console.log(req.body)
     const blacklistedWords = ["and", "then", "or"];
     const whiteListedChars = /[^A-Za-z0-9-|]/g;
     let searchParameters = req.body.searchParameters.split(" ");
@@ -111,7 +112,7 @@ router.post(
         "SELECT id, first_name, last_name, profile_image_url FROM users WHERE first_name REGEXP ?  ORDER BY first_name",
         [searchParameters]
       );
-      return res.status.send({ data: result });
+      return res.status(200).send({ data: result });
     } catch (err) {
       return res.status(400).send({ data: err });
     }
@@ -119,7 +120,7 @@ router.post(
 );
 
 router.patch(
-  "/api/users",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -142,7 +143,7 @@ router.patch(
 );
 
 router.patch(
-  "/api/users/password",
+  "/password",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -163,7 +164,7 @@ router.patch(
 );
 
 router.delete(
-  "/api/users",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {

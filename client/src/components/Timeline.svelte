@@ -1,25 +1,8 @@
 <script>
-  import { Activity, ActivityItem, Img } from "flowbite-svelte";
-  import { BASE_URL, cookie } from "../store/global";
-  import NotificationList from "./NotificationList.svelte";
+  import { Activity, A } from "flowbite-svelte";
   export let notifications;
 
   let profileImageObjectURL;
-
-  async function load_pic(image_url) {
-    const url = `${$BASE_URL}/posts/image/${image_url}`;
-    const options = {
-      method: "GET",
-    };
-    let response = await fetch(url, options);
-    if (response.status === 200) {
-      const imageBlob = await response.blob();
-      profileImageObjectURL = URL.createObjectURL(imageBlob);
-      return profileImageObjectURL;
-    } else {
-      console.log("HTTP-Error: " + response.status);
-    }
-  }
 </script>
 
 <div class="w-content">
@@ -30,15 +13,7 @@
           <div
             class="p-4 bg-white rounded-lg border border-gray-200 shadow-sm dark:bg-gray-700 dark:border-gray-600"
           >
-            <div class="relative">
-              <Img
-                src="/public/img/mo.jpeg"
-                alt="sample 1"
-                size="w-6"
-                imgClass="h-6 object-cover"
-                class="rounded-full"
-              />
-            </div>
+            <div class="relative" />
             <div class="justify-between items-center mb-3 sm:flex">
               <time
                 class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0"
@@ -48,14 +23,21 @@
                 class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0"
                 >{new Date(notification.created_on).toLocaleTimeString()}</time
               >
-              <div/>
+              <div />
             </div>
 
             <div
               class="p-3 text-xs italic font-normal text-gray-500 bg-gray-50 rounded-lg border border-gray-200 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300"
             >
               <p class="text-xs">
-                {notification.like_user} liked {notification.post_user} post
+                <A href={`profile/follower/?user=${notification.user_id}`}>
+                  {notification.like_user}
+                </A>
+                liked
+                <A href={`profile/follower/?user=${notification.post_user_id}`}>
+                  {notification.post_user}
+                </A>
+                post
               </p>
             </div>
           </div>

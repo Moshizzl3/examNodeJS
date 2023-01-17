@@ -25,7 +25,7 @@
   async function searchPosts() {
     searchResultPosts = [];
     const body = { searchParameters };
-    const response = await fetch($BASE_URL + "/posts/search", {
+    const response = await fetch(`${$BASE_URL}/api/posts/search`, {
       method: "POST",
       headers: {
         Authorization: $cookie,
@@ -44,7 +44,7 @@
   async function searchPeople() {
     searchResultPeople = [];
     const body = { searchParameters };
-    const response = await fetch(`${$BASE_URL}/users/search`, {
+    const response = await fetch(`${$BASE_URL}/api/users/search`, {
       method: "POST",
       headers: {
         Authorization: $cookie,
@@ -60,10 +60,13 @@
     isApproved = true;
   }
 
-  async function load_pic(people) {
-    const url = `${$BASE_URL}/posts/image/${people}`;
+  async function load_pic(imgUrl) {
+    const url = `${$BASE_URL}/api/images/img-name/${imgUrl}`;
     const options = {
       method: "GET",
+      headers: {
+        Authorization: $cookie,
+      },
     };
     let response = await fetch(url, options);
     if (response.status === 200) {
@@ -76,7 +79,7 @@
   }
 
   async function followPerson(followingId) {
-    const response = await fetch(`${$BASE_URL}/followers`, {
+    const response = await fetch(`${$BASE_URL}/api/followers`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -86,7 +89,6 @@
     });
     if (!response.ok) {
     }
-    //something happens after following like a toastr or notification, maybe both
   }
 </script>
 
@@ -136,9 +138,7 @@
                         </div>
                       </TableBodyCell>
                       <TableBodyCell>
-                        <A
-                          href={`profile/follower/?user=${people.id}`}
-                        >
+                        <A href={`profile/follower/?user=${people.id}`}>
                           {people.first_name}
                         </A></TableBodyCell
                       >

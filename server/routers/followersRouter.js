@@ -7,7 +7,7 @@ const router = Router();
 router.use(passport.initialize());
 
 router.get(
-  "/followers",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -23,7 +23,7 @@ router.get(
 );
 
 router.get(
-  "/followers/following",
+  "/following",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -39,7 +39,7 @@ router.get(
 );
 
 router.post(
-  "/followers",
+  "/",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {

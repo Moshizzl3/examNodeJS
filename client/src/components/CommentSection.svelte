@@ -15,7 +15,6 @@
   export let postId;
   export let commentId = null;
 
-  let formModal = false;
   let likeId;
   let likeCount;
 
@@ -25,7 +24,7 @@
       commentId,
     };
 
-    const response = await fetch(`${$BASE_URL}/likes/post`, {
+    const response = await fetch(`${$BASE_URL}/api/likes/post`, {
       method: "POST",
       headers: {
         Authorization: $cookie,
@@ -44,7 +43,7 @@
   }
 
   async function unlikePost() {
-    const response = await fetch(`${$BASE_URL}/likes/post/${likeId}`, {
+    const response = await fetch(`${$BASE_URL}/api/likes/post/${likeId}`, {
       method: "DELETE",
       headers: {
         Authorization: $cookie,
@@ -55,7 +54,7 @@
   }
 
   async function getLikeStatus() {
-    const response = await fetch(`${$BASE_URL}/likes/post/status/${postId}`, {
+    const response = await fetch(`${$BASE_URL}/api/likes/post/status/${postId}`, {
       headers: { Authorization: $cookie },
     });
     const data = await response.json();
@@ -63,7 +62,7 @@
   }
 
   async function getLikeCount() {
-    const response = await fetch(`${$BASE_URL}/likes/post/count/${postId}`, {
+    const response = await fetch(`${$BASE_URL}/api/likes/post/count/${postId}`, {
       headers: { Authorization: $cookie },
     });
     const data = await response.json();

@@ -9,7 +9,7 @@
   let coverImageObjectURL;
 
   async function loadProfilePic() {
-    const url = `${$BASE_URL}/users/profile-image/follower/${profileId}`;
+    const url = `${$BASE_URL}/api/images/profile-image/follower/${profileId}`;
     const options = {
       method: "GET",
       headers: {
@@ -26,7 +26,7 @@
   }
 
   async function loadCoverPic() {
-    const url = `${$BASE_URL}/users/cover-image/follower/${profileId}`;
+    const url = `${$BASE_URL}/api/images/cover-image/follower/${profileId}`;
     const options = {
       method: "GET",
       headers: {

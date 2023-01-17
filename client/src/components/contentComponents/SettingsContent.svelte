@@ -96,7 +96,7 @@
   }
 
   async function loadProfilePic() {
-    const url = `${$BASE_URL}/users/profile-image`;
+    const url = `${$BASE_URL}/api/images//profile-image`;
     const options = {
       method: "GET",
       headers: {
@@ -113,7 +113,7 @@
   }
 
   async function loadCoverPic() {
-    const url = `${$BASE_URL}/users/cover-image`;
+    const url = `${$BASE_URL}/api/images/cover-image`;
     const options = {
       method: "GET",
       headers: {
@@ -134,7 +134,7 @@
     if (imageFiles) {
       const formData = new FormData();
       formData.append("files", imageFiles[0]);
-      const response = await fetch(`${$BASE_URL}/upload_image`, {
+      const response = await fetch(`${$BASE_URL}/api/images/upload_image`, {
         headers: {
           Authorization: $cookie,
         },
@@ -159,7 +159,7 @@
     if (imageFiles) {
       const formData = new FormData();
       formData.append("files", imageFiles[0]);
-      const response = await fetch(`${$BASE_URL}/upload_image`, {
+      const response = await fetch(`${$BASE_URL}/api/images/upload_image`, {
         headers: {
           Authorization: $cookie,
         },

@@ -20,7 +20,7 @@
   };
 
   async function getPosts() {
-    const response = await fetch(`${$BASE_URL}/posts/user/${profileId}`, {
+    const response = await fetch(`${$BASE_URL}/api/posts/user/${profileId}`, {
       headers: {
         Authorization: $cookie,
         "Content-type": "application-json",
@@ -35,7 +35,7 @@
   }
 
   async function getUser() {
-    const url = `${$BASE_URL}/api/users/user/${profileId}`;
+    const url = `${$BASE_URL}/api/users/${profileId}`;
     const options = {
       method: "GET",
       headers: {

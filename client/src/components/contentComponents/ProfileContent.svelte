@@ -12,7 +12,7 @@
   let userName;
 
   async function getPosts() {
-    const response = await fetch($BASE_URL + "/posts", {
+    const response = await fetch(`${$BASE_URL}/api/posts`, {
       headers: {
         Authorization: $cookie,
         "Content-type": "application-json",
@@ -56,7 +56,7 @@
             <p class="text-left dark:text-white">{userName}</p>
           </div>
         </div>
-        <div class="flex w-full justify-end relative bottom-20 left-0">
+        <div class="flex w-full justify-end relative bottom-12 left-0">
           <Button color="alternative" size="xs">Edit profile</Button>
         </div>
       </div>

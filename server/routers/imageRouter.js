@@ -23,7 +23,7 @@ const router = Router();
 router.use(passport.initialize());
 
 router.get(
-  "/users/profile-image",
+  "/profile-image",
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
     return res.sendFile(
@@ -32,7 +32,7 @@ router.get(
   }
 );
 router.get(
-  "/users/profile-image/follower/:id",
+  "/profile-image/follower/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -50,7 +50,7 @@ router.get(
 );
 
 router.get(
-  "/users/cover-image",
+  "/cover-image",
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
     return res.sendFile(
@@ -60,7 +60,7 @@ router.get(
 );
 
 router.get(
-  "/users/cover-image/follower/:id",
+  "/cover-image/follower/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
@@ -76,16 +76,13 @@ router.get(
   }
 );
 router.get(
-  "/users/images/:name",
+  "/img-name/:imgUrl",
   passport.authenticate("jwt", { session: false }),
   function (req, res) {
-    return res.sendFile(path.resolve(`./public/images/${req.params.name}`));
+    return res.sendFile(path.resolve(`./public/images/${req.params.imgUrl}`));
   }
 );
 
-router.get("/posts/image/:imageUrl", function (req, res) {
-  return res.sendFile(path.resolve(`./public/images/${req.params.imageUrl}`));
-});
 
 router.post("/upload_image", upload.array("files"), (req, res) => {
   try {

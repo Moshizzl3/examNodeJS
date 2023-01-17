@@ -16,7 +16,7 @@
   let imageObjectURL;
 
   async function getMyFollowings() {
-    const response = await fetch(`${$BASE_URL}/followers`, {
+    const response = await fetch(`${$BASE_URL}/api/followers`, {
       headers: {
         Authorization: $cookie,
         "Content-type": "application/json",
@@ -33,7 +33,7 @@
 
   async function loadPic(id) {
     console.log(id);
-    const url = `${$BASE_URL}/users/profile-image/follower/${id}`;
+    const url = `${$BASE_URL}/api/images/profile-image/follower/${id}`;
     const options = {
       headers: {
         Authorization: $cookie,

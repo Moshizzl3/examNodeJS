@@ -26,12 +26,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.use("api/users" ,userRouter);
-app.use(authencationRouter);
-app.use(imageRouter);
-app.use(followersRouter);
-app.use(postsRouter);
-app.use(likesRouter);
+app.use("/api/users" ,userRouter);
+app.use("/api/authenticate",authencationRouter);
+app.use("/api/images",imageRouter);
+app.use("/api/followers",followersRouter);
+app.use("/api/posts",postsRouter);
+app.use("/api/likes",likesRouter);
 app.use(emailRouter);
 
 
